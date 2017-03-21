@@ -10,13 +10,14 @@
    <title>Event Manager</title>
 
    <!-- Bootstrap core CSS -->
-   <link href="css/bootstrap.min.css" rel="stylesheet">
+   <!--<link href="css/bootstrap.min.css" rel="stylesheet">-->
+   <link href="css/bootstrap.css" rel="stylesheet">
 
    <!-- Custom styles for this template -->
    <link href="css/main.css" rel="stylesheet">
 
    <!-- Datatable CSS -->
-  <link href="css/dataTables.bootstrap.min.css" rel="stylesheet">
+  <link href="css/dataTables.bootstrap4.min.css" rel="stylesheet">
 
   </head>
 
@@ -25,12 +26,12 @@
     <button class="navbar-toggler navbar-toggler-right hidden-lg-up" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <a class="navbar-brand" href="#">Event Manager</a>
+    <a class="navbar-brand" href="index.html">Event Manager</a>
 
     <div class="collapse navbar-collapse" id="navbarsExampleDefault">
       <ul class="navbar-nav mr-auto">
-       <li class="nav-item active">
-        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+       <li class="nav-item">
+        <a class="nav-link" href="index.html">Home</a>
        </li>
        <li class="nav-item">
         <a class="nav-link" href="#">Profile</a>
@@ -56,7 +57,10 @@
           <a class="nav-link" href="#">Events By University</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Request New RSO</a>
+          <a class="nav-link" href="#">Event Map</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="RSORequest.html">Request New RSO</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#">Create New Event</a>
@@ -66,7 +70,8 @@
 
       <main class="col-sm-9 offset-sm-3 col-md-10 offset-md-2 pt-3">
        <h2>My Events</h2>
-        <table id="myEvents" class="table table-responsive table-striped table-hover table-bordered">
+       <div class="table-responsive">
+        <table id="myEvents" class="table table-striped table-hover table-bordered" cellspacing="0" width="100%">
           <thead>
            <tr>
             <th>#</th>
@@ -191,6 +196,7 @@
            </tr>
           </tbody>
         </table>
+        </div>
       </main>
     </div>
    </div>
@@ -204,7 +210,7 @@
    <script src="js/bootstrap.min.js"></script>
    <script src="js/jquery-1.12.4.js"></script>
    <script src="js/jquery.dataTables.min.js"></script>
-   <script src="js/dataTables.bootstrap.min.js"></script>
+   <script src="js/dataTables.bootstrap4.min.js"></script>
    <script src="js/myEvents.js"></script>
 
 
