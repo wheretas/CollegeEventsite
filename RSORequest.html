@@ -12,6 +12,10 @@
 	<!-- Bootstrap core CSS -->
 	<!--<link href="css/bootstrap.min.css" rel="stylesheet">-->
 	<link href="css/bootstrap.css" rel="stylesheet">
+	<link href="css/bootstrap.min.css" rel="stylesheet">
+	<link href="css/bootstrap-grid.css" rel="stylesheet">
+	<link href="css/bootstrap-theme.css" rel="stylesheet">
+	<link href="css/bootstrap-reboot.css" rel="stylesheet">
 
 	<!-- Custom styles for this template -->
 	<link href="css/main.css" rel="stylesheet">
@@ -74,6 +78,12 @@
 			  <div class="panel panel-default">
 			    <div class="panel-heading">RSO Information and Members</div>
 			    <div class="panel-body">
+			    	<div id="errorAlert" class="hide alert alert-danger">
+					  <strong>Error!</strong> You have made a mistake in your submission. Please correct it and try again. 
+					</div>
+					<div id="successAlert" class="alert alert-success">
+					  <strong>Success!</strong> Your RSO Request has been successfully submitted. 
+					</div>
 			    	<form id="genInfo">
 				    	<div class="row">
 				    		<div class="col-md-6">
@@ -95,10 +105,17 @@
 				    		</div>
 				    	</div>
 				    	<div class="row">
-				    		<div class="col-md-12">
+				    		<div class="col-md-12 ">
 					    		<div class="form-group">
 							        <label class="control-label">Additional Emails (at least 4, seperated by commas)</label>
-							        <textarea id="members" class="form-control" rows="3"></textarea>
+							        <textarea id="memberEmails" class="form-control" rows="3"></textarea>
+				    		</div>
+				    	</div>
+				    	<div class="row">
+				    		<div class="col-md-12 offset-md-2">
+				    			<div class="form-group">
+				    				<button type="button" id="submitBtn" class="form-control btn btn-primary">Submit</button>
+				    			</div>
 				    		</div>
 				    	</div>
 			    	</form>
@@ -119,7 +136,6 @@
 	<script src="js/jquery-1.12.4.js"></script>
 	<script src="js/jquery.dataTables.min.js"></script>
 	<script src="js/dataTables.bootstrap4.min.js"></script>
-	<script src="js/myEvents.js"></script>
 	<script src="js/RSORequest.js"></script>
 
 
