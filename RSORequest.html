@@ -67,7 +67,10 @@
 			 <a class="nav-link active" href="RSORequest.html">Request New RSO<span class="sr-only">(current)</span></a>
 		  </li>
 		  <li class="nav-item">
-			 <a class="nav-link" href="#">Create New Event</a>
+			 <a class="nav-link" href="EventRequest.html">Create New Event</a>
+		  </li>
+		  <li class="nav-item">
+			 <a class="nav-link" href="#">RSO Search</a>
 		  </li>
 		 </ul>
 		</nav>
@@ -86,6 +89,12 @@
 					</div>
 			    	<form id="genInfo">
 				    	<div class="row">
+				    		<div class="col-md-12">
+				    			<div class="form-group">
+				    				<label for="title">RSO Title</label>
+				    				<input class="form-control" id="title" type="text" placeholder="Enter Title">
+				    			</div>
+				    		</div>
 				    		<div class="col-md-6">
 					    		<div class="form-group">
 					    			<label for="school">University/Domain</label>
@@ -109,12 +118,18 @@
 					    		<div class="form-group">
 							        <label class="control-label">Additional Emails (at least 4, seperated by commas)</label>
 							        <textarea id="memberEmails" class="form-control" rows="3"></textarea>
+							    </div>
 				    		</div>
 				    	</div>
 				    	<div class="row">
-				    		<div class="col-md-12 offset-md-2">
+				    		<div class="col-md-3">
 				    			<div class="form-group">
 				    				<button type="button" id="submitBtn" class="form-control btn btn-primary">Submit</button>
+				    			</div>
+				    		</div>
+				    		<div class="col-md-3">
+				    			<div class="form-group pull-right">
+				    				<button type="button" id="reset" class="form-control btn btn-danger">Reset</button>
 				    			</div>
 				    		</div>
 				    	</div>
