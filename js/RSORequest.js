@@ -20,8 +20,12 @@ $(function() {
 	function validateForm()
 	{
 		$('#errorAlert').hide();
+		$('#successAlert').hide();
 		var errors = 0;
 		var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+
+		if($('#title').val() == "")
+			errors++;
 
 		if(!regex.test($('#adminEmail').val()))
 			errors++;
