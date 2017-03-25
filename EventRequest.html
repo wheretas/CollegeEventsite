@@ -64,10 +64,10 @@
           <a class="nav-link" href="#">Event Map</a>
         </li>
 		  <li class="nav-item">
-			 <a class="nav-link active" href="RSORequest.html">Request New RSO<span class="sr-only">(current)</span></a>
+			 <a class="nav-link" href="RSORequest.html">Request New RSO</a>
 		  </li>
 		  <li class="nav-item">
-			 <a class="nav-link" href="EventRequest.html">Create New Event</a>
+			 <a class="nav-link active" href="EventRequest.hmtl">Create New Event<span class="sr-only">(current)</span></a>
 		  </li>
 		  <li class="nav-item">
 			 <a class="nav-link" href="#">RSO Search</a>
@@ -76,54 +76,89 @@
 		</nav>
 
 		<main class="col-md-10 offset-sm-3 offset-md-2 pt-3">
-			<h2>RSO Request Form</h2>
+			<h2>Event Request Form</h2>
 		 	<div class="col-md-5">
 			  <div class="panel panel-default">
-			    <div class="panel-heading">RSO Information and Members</div>
+			    <div class="panel-heading">Event General Information</div>
 			    <div class="panel-body">
 			    	<div id="errorAlert" class="hide alert alert-danger">
 					  <strong>Error!</strong> You have made a mistake in your submission. Please correct it and try again. 
 					</div>
 					<div id="successAlert" class="alert alert-success">
-					  <strong>Success!</strong> Your RSO Request has been successfully submitted. 
+					  <strong>Success!</strong> Your Event Request has been successfully submitted. 
 					</div>
 			    	<form id="genInfo">
 				    	<div class="row">
 				    		<div class="col-md-12">
 				    			<div class="form-group">
-				    				<label for="title">RSO Title</label>
+				    				<label for="title">Event Title</label>
 				    				<input class="form-control" id="title" type="text" placeholder="Enter Title">
 				    			</div>
 				    		</div>
+				    	</div>
+				    	<div class="row">
 				    		<div class="col-md-6">
 					    		<div class="form-group">
-					    			<label for="school">University/Domain</label>
-					    			<select id="school" class="form-control">
-					    				<option>UCF / @ucf.edu</option>
-					    				<option>UF / @uf.edu</option>
-					    				<option>FSU / @fsu.edu</option>
-					    				<option>GT / @gt.edu</option>
+					    			<label for="type">Event Type</label>
+					    			<select id="type" class="form-control">
+					    				<option value="social">Social</option>
+					    				<option value="fundraising">Fundraising</option>
+					    				<option value="speaker">Featured Speaker</option>
+					    				<option value="banquet">Banquet</option>
+					    				<option value="competition">Competition</option>
 					    			</select>
 					    		</div>
 				    		</div>
 				    		<div class="col-md-6">
 				    			<div class="form-group">
-					    			<label for="adminEmail">Admin Email Address</label>
-					    			<input type="email" class="form-control" id="adminEmail" aria-describedby="emailHelp" placeholder="Enter email">
+					    			<label for="cat">Category</label>
+					    			<select id="cat" class="form-control">
+					    				<option value="public">Public</option>
+					    				<option value="private">Private</option>
+					    				<option value="rso">RSO Members Only</option>
+					    			</select>
 					    		</div>
 				    		</div>
 				    	</div>
 				    	<div class="row">
-				    		<div class="col-md-12 ">
+				    		<div class="col-md-12">
 					    		<div class="form-group">
-							        <label class="control-label">Additional Emails (at least 4, seperated by commas)</label>
-							        <textarea id="memberEmails" class="form-control" rows="3"></textarea>
+							        <label class="control-label">Description</label>
+							        <textarea id="description" class="form-control" rows="3"></textarea>
 							    </div>
 				    		</div>
 				    	</div>
 				    	<div class="row">
-				    		<div class="col-md-3">
+				    		<div class="col-md-6">
 				    			<div class="form-group">
+				    				<label class="control-label" for="date">Date</label>
+				    				<input class="form-control" id="date" type="text" placeholder="mm/dd/yyyy">
+				    			</div>
+				    		</div>
+				    		<div class="col-md-6">
+				    			<div class="form-group">
+				    				<label class="control-label" for="time">Time</label>
+				    				<input class="form-control" id="time" type="text" placeholder="hh:mm">
+				    			</div>
+				    		</div>
+				    	</div>
+				    	<div class="row">
+				    		<div class="col-md-6">
+				    			<div class="form-group">
+				    				<label class="control-label" for="contact_phone">Contact Phone Number</label>
+				    				<input class="form-control" id="contact_phone" type="text" placeholder="xxx-xxx-xxxx">
+				    			</div>
+				    		</div>
+				    		<div class="col-md-6">
+				    			<div class="form-group">
+				    				<label class="control-label" for="contact_email">Contact Email Address</label>
+				    				<input class="form-control" id="contact_email" type="email" aria-describedby="emailHelp" placeholder="Enter Event Contact Email">
+				    			</div>
+				    		</div>
+				    	</div>
+				    	<div class="row">
+				    		<div class="col-md-3">
+				    			<div class="form-group pull-right">
 				    				<button type="button" id="submitBtn" class="form-control btn btn-primary">Submit</button>
 				    			</div>
 				    		</div>
@@ -151,7 +186,7 @@
 	<script src="js/jquery-1.12.4.js"></script>
 	<script src="js/jquery.dataTables.min.js"></script>
 	<script src="js/dataTables.bootstrap4.min.js"></script>
-	<script src="js/RSORequest.js"></script>
+	<script src="js/EventRequest.js"></script>
 
 
   </body>
