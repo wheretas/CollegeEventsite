@@ -2,6 +2,7 @@ $(function() {
 	$('#errorAlert').hide();
 	$('#successAlert').hide();
 	$('#submitBtn').on('click', submitRequest);
+	$('#reset').on('click', resetForm);
 
 	function submitRequest()
 	{
@@ -16,6 +17,11 @@ $(function() {
 		//on success
 		$('#successAlert').show();
 	};
+
+	function resetForm()
+	{
+		$('#genInfo').find("textarea, input, select").val('').end();
+	}
 
 	function validateForm()
 	{
