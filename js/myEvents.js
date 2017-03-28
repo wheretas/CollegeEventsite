@@ -1,3 +1,3 @@
 $(function() {
-    $('#myEvents').DataTable();
+    $('#myEventsTable').DataTable();
 });
