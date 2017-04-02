@@ -19,9 +19,18 @@
 
 	<!-- Custom styles for this template -->
 	<link href="css/main.css" rel="stylesheet">
+	<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+	<script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+	<script src="js/bootstrap.min.js"></script>
 
-	<!-- Datatable CSS -->
-  <!--<link href="css/dataTables.bootstrap4.min.css" rel="stylesheet">-->
+	<script src="js/jquery-1.12.4.js"></script>
+	<script src="js/jquery.dataTables.min.js"></script>
+	<script src="js/dataTables.bootstrap4.min.js"></script>
+	<script src="js/EventRequest.js"></script>
+	<script src="https://netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src='https://maps.google.com/maps/api/js?sensor=false&libraries=places'></script>
+    <script src="js/locationpicker.jquery.min.js"></script>
 
   </head>
 
@@ -159,6 +168,92 @@
 				    		</div>
 				    	</div>
 				    	<div class="row">
+				    		<div class="col-md-12">
+				    			<div class="form-group">
+				    				<button data-target="#us6-dialog" data-toggle="modal">Select Location</button>
+								    <div id="us6-dialog" class="modal fade">
+								        <div class="modal-dialog">
+								            <div class="modal-content">
+								                <div class="modal-header">				
+								                    <h4 class="modal-title">Location Select</h4>
+								                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+								                </div>
+								                <div class="modal-body">
+								                    <div class="form-horizontal" style="width: 550px">
+								                        <div class="form-group">
+								                            <label class="col-sm-2 control-label">Location:</label>
+
+								                            <div class="col-sm-10">
+								                                <input type="text" class="form-control" id="us3-address" />
+								                            </div>
+								                        </div>
+								                        <div class="form-group">
+								                            <label class="col-sm-2 control-label">Radius:</label>
+
+								                            <div class="col-sm-5">
+								                                <input type="text" class="form-control" id="us3-radius" />
+								                            </div>
+								                        </div>
+								                        <div id="us3" style="width: 85%; height: 400px;"></div>
+								                        <div class="clearfix">&nbsp;</div>
+								                        <div class="m-t-small">
+								                            <label class="p-r-small col-sm-1 control-label">Lat.:</label>
+
+								                            <div class="col-sm-3">
+								                                <input type="text" class="form-control" style="width: 110px" id="us3-lat" />
+								                            </div>
+								                            <label class="p-r-small col-sm-2 control-label">Long.:</label>
+
+								                            <div class="col-sm-3">
+								                                <input type="text" class="form-control" style="width: 110px" id="us3-lon" />
+								                            </div>
+								                        </div>
+								                        <div class="clearfix"></div>
+								                        <script>
+								                            $('#us3').locationpicker({
+								                                location: {
+								                                    latitude: 28.60257103063807,
+								                                    longitude: -81.2001131225586
+								                                },
+								                                radius: 100,
+								                                inputBinding: {
+								                                    latitudeInput: $('#us3-lat'),
+								                                    longitudeInput: $('#us3-lon'),
+								                                    radiusInput: $('#us3-radius'),
+								                                    locationNameInput: $('#us3-address')
+								                                },
+								                                enableAutocomplete: true
+								                            });
+								                            $('#us6-dialog').on('shown.bs.modal', function () {
+								                                $('#us3').locationpicker('autosize');
+								                            });
+								                        </script>
+								                    </div>
+								                </div>
+								                <div class="modal-footer">
+								                    <button type="button" class="btn btn-primary" data-dismiss="modal">Save changes</button>
+								                </div>
+								            </div>
+								        </div>
+								    </div>
+				    			</div>
+				    		</div>
+				    	</div>
+				    	<div class="row">
+				    		<div class="col-md-6">
+				    			<div class="form-group">
+				    				<label class="control-label" for="latitude">Location Latitude</label>
+				    				<input class="form-control" id="latitude" type="text">
+				    			</div>
+				    		</div>
+				    		<div class="col-md-6">
+				    			<div class="form-group">
+				    				<label class="control-label" for="longitude">Location Longitude</label>
+				    				<input class="form-control" id="longitude" type="email">
+				    			</div>
+				    		</div>
+				    	</div>
+				    	<div class="row">
 				    		<div class="col-md-3">
 				    			<div class="form-group pull-right">
 				    				<button type="button" id="submitBtn" class="form-control btn btn-primary">Submit</button>
@@ -181,14 +276,7 @@
 	<!-- Bootstrap core JavaScript
 	================================================== -->
 	<!-- Placed at the end of the document so the pages load faster -->
-	<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
-	<script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
-	<script src="js/bootstrap.min.js"></script>
-	<script src="js/jquery-1.12.4.js"></script>
-	<script src="js/jquery.dataTables.min.js"></script>
-	<script src="js/dataTables.bootstrap4.min.js"></script>
-	<script src="js/EventRequest.js"></script>
+
 
 
   </body>

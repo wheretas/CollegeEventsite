@@ -3,6 +3,9 @@ $(function() {
 	$('#successAlert').hide();
 	$('#submitBtn').on('click', submitRequest);
 	$('#reset').on('click', resetForm);
+	$('#us3-lat').on('change', resetLoc);
+	$('#us3-lon').on('change', resetLoc);
+
 
 	function submitRequest()
 	{
@@ -57,5 +60,12 @@ $(function() {
 	    	return 0;
 	    }
 	    return 1;
+	}
+
+	function resetLoc()
+	{
+		document.getElementById('latitude').value=document.getElementById('us3-lat').value;
+		document.getElementById('longitude').value=document.getElementById('us3-lon').value;
+
 	}
 });
