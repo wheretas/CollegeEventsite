@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <link rel="icon" href="images/favicon.ico">
+
+  <title>Event Manager</title>
+
+  <!-- Bootstrap core CSS -->
+  <!--<link href="css/bootstrap.min.css" rel="stylesheet">-->
+  <link href="css/bootstrap.css" rel="stylesheet">
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/bootstrap-grid.css" rel="stylesheet">
+  <link href="css/bootstrap-theme.css" rel="stylesheet">
+  <link href="css/bootstrap-reboot.css" rel="stylesheet">
+
+  <!-- Custom styles for this template -->
+  <link href="css/main.css" rel="stylesheet">
+  <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+  <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+  <script src="js/bootstrap.min.js"></script>
+
+  <script src="js/jquery-1.12.4.js"></script>
+  <script src="js/jquery.dataTables.min.js"></script>
+  <script src="js/dataTables.bootstrap4.min.js"></script>
+  <script src="js/EventRequest.js"></script>
+  <script src="https://netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+
+  <style>
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+      #map {
+        height: 100%;
+      }
+      html, body {
+        height: 98%;
+        /*margin: 0;
+        padding: 0;*/
+      }
+    </style>
+
+  </head>
+
+  <body>
+  <nav class="navbar navbar-toggleable-md navbar-inverse fixed-top bg-inverse">
+   <button class="navbar-toggler navbar-toggler-right hidden-lg-up" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+   </button>
+   <a class="navbar-brand" href="index.html">Event Manager</a>
+
+   <div class="collapse navbar-collapse" id="theNavbar">
+    <ul class="navbar-nav mr-auto">
+     <li class="nav-item">
+      <a class="nav-link" href="index.html">Home</a>
+     </li>
+     <li class="nav-item">
+      <a class="nav-link" href="#">Profile</a>
+     </li>
+     <li class="nav-item">
+      <a class="nav-link" href="#">Help</a>
+     </li>
+    </ul>
+   </div>
+  </nav>
+
+  <div class="container-fluid">
+   <div class="row">
+    <nav class="col-sm-3 col-md-2 bg-faded sidebar">
+     <ul class="nav nav-pills flex-column">
+      <li class="nav-item">
+       <a class="nav-link" href="index.html">All Events</a>
+      </li>
+      <li class="nav-item">
+       <a class="nav-link" href="myEvents.html">My Events</a>
+      </li>
+      <li class="nav-item">
+       <a class="nav-link" href="UniEvents.html">Events By University</a>
+      </li>
+      <li class="nav-item">
+          <a class="nav-link active" href="EventMap.html">Event Map<span class="sr-only">(current)</span></a>
+        </li>
+      <li class="nav-item">
+       <a class="nav-link" href="RSORequest.html">Request New RSO</a>
+      </li>
+      <li class="nav-item">
+       <a class="nav-link" href="EventRequest.hmtl">Create New Event</a>
+      </li>
+      <li class="nav-item">
+       <a class="nav-link" href="RSOSearch.html">RSO Search</a>
+      </li>
+     </ul>
+    </nav>
+
+    <main class="col-md-10 offset-sm-3 offset-md-2 pt-3">
+      <h2>Event Map</h2>
+      
+    </main>
+   </div>
+  </div>
+
+  <div id="map"></div>
+    <script>
+      var map;
+      function initMap() {
+        map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 15,
+          center: new google.maps.LatLng(28.60257103063807,-81.2001131225586),
+          mapTypeId: 'terrain'
+        });
+
+        // Create a <script> tag and set the USGS URL as the source.
+        var script = document.createElement('script');
+        // This example uses a local copy of the GeoJSON stored at
+        // http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_week.geojsonp
+        //script.src = 'https://developers.google.com/maps/documentation/javascript/examples/json/earthquake_GeoJSONP.js';
+        document.getElementsByTagName('head')[0].appendChild(script);
+      }
+
+      // Loop through the results array and place a marker for each
+      // set of coordinates.
+      window.eqfeed_callback = function(results) {
+        for (var i = 0; i < results.features.length; i++) {
+          var coords = results.features[i].geometry.coordinates;
+          var latLng = new google.maps.LatLng(coords[1],coords[0]);
+          var marker = new google.maps.Marker({
+            position: latLng,
+            map: map
+          });
+        }
+      }
+    </script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBe8mVtUNzQGnGedAQCh5T6sRsjO0400pI&callback=initMap">
+    </script>
+
+  <!-- Bootstrap core JavaScript
+  ================================================== -->
+  <!-- Placed at the end of the document so the pages load faster -->
+
+
+
+  </body>
+</html>
