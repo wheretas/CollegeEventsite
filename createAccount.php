@@ -19,6 +19,8 @@ $selectUser =           $_POST ['selectUser'];
 
 if($selectUser == "1"){
 	echo "You picked are student!!";
+
+
 } else{
 	echo "You are a SuperAdmin!!!";
 }
@@ -32,7 +34,30 @@ values
 
 ('$email','$first_name','$last_name','$password')";
 
+
+if($selectUser == "1"){
+	$queryStudent = 
+"INSERT INTO student
+(email)
+
+values
+
+('$email')";
+
+
+} else{
+	$querySuperAdmin = 
+"INSERT INTO superadmin
+(email)
+
+values
+
+('$email')";
+}
+
 $result = mysqli_query($db, $query);
+$result2 = mysqli_query($db, $queryStudent);
+$result3 = mysqli_query($db, $querySuperAdmin);
 
  header("Location: loginBootstrap.html"); 
             die("Redirecting to: loginBootstrap.html");
