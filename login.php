@@ -74,6 +74,7 @@ $tempUserRole = 0;
 
      
 $_SESSION['varname'] = $tempUserRole;
+$_SESSION['varemail'] = $email;
 
 
 Echo "Database Saved"; 

@@ -90,30 +90,31 @@
 					<div id="successAlert" class="alert alert-success">
 					  <strong>Success!</strong> Your RSO Request has been successfully submitted. 
 					</div>
-			    	<form id="genInfo">
+					<!--- change based on directory action-->
+			    	<form id="genInfo" method="POST" action="/RSOAction.php">
 				    	<div class="row">
 				    		<div class="col-md-12">
 				    			<div class="form-group">
 				    				<label for="title">RSO Title</label>
-				    				<input class="form-control" id="title" type="text" placeholder="Enter Title">
+				    				<input class="form-control" id="title" name ="title" type="text" placeholder="Enter Title">
 				    			</div>
 				    		</div>
 				    		<div class="col-md-6">
 					    		<div class="form-group">
 					    			<label for="school">University/Domain</label>
-					    			<select id="school" class="form-control">
+					    			<select id="school"  name ="school" class="form-control">
 					    				<option></option>
-					    				<option>UCF / @ucf.edu</option>
-					    				<option>UF / @uf.edu</option>
-					    				<option>FSU / @fsu.edu</option>
-					    				<option>GT / @gt.edu</option>
+					    				<option value="1">UCF / @ucf.edu</option>
+					    				<option value="2">UF / @uf.edu</option>
+					    				<option value="3">FSU / @fsu.edu</option>
+					    				<option value="4">GT / @gt.edu</option>
 					    			</select>
 					    		</div>
 				    		</div>
 				    		<div class="col-md-6">
 				    			<div class="form-group">
 					    			<label for="adminEmail">Admin Email Address</label>
-					    			<input type="email" class="form-control" id="adminEmail" aria-describedby="emailHelp" placeholder="Enter email">
+					    			<input type="email" class="form-control" id="adminEmail" name= "adminEmail" aria-describedby="emailHelp" placeholder="Enter email">
 					    		</div>
 				    		</div>
 				    	</div>
@@ -121,14 +122,15 @@
 				    		<div class="col-md-12 ">
 					    		<div class="form-group">
 							        <label class="control-label">Additional Emails (at least 4, seperated by commas)</label>
-							        <textarea id="memberEmails" class="form-control" rows="3"></textarea>
+							        <textarea id="memberEmails" name = "memberEmails" class="form-control" rows="3"></textarea>
 							    </div>
 				    		</div>
 				    	</div>
 				    	<div class="row">
 				    		<div class="col-md-3">
 				    			<div class="form-group">
-				    				<button type="button" id="submitBtn" class="form-control btn btn-primary">Submit</button>
+				    				<!--- could change bak to type button maybe add onclick-->
+				    				<button type="submit" id="submitBtn" class="form-control btn btn-primary">Submit</button>
 				    			</div>
 				    		</div>
 				    		<div class="col-md-3">
