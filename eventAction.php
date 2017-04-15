@@ -115,6 +115,26 @@ mysqli_select_db($db, $dbname) or die("cannot select DB");
 					$result3 = mysqli_query($db, $createEvent) or die(mysqli_error($db));
 					
 				}
+
+
+				if($type == "Public"){
+					$createPublic = 
+						"INSERT INTO admincreatepublic
+							(name,email)					
+						values
+							('$eventname','$email')";
+					$result4 = mysqli_query($db, $createPublic) or die(mysqli_error($db));
+				}
+
+
+				if($type == "Private"){
+					$createPrivate = 
+						"INSERT INTO admincreateprivate
+							(name,email)					
+						values
+							('$eventname','$email')";
+					$result5 = mysqli_query($db, $createPrivate) or die(mysqli_error($db));
+				}
          
         		
 

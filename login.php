@@ -36,9 +36,14 @@ $tempUserRole = 0;
         $query2 = 
         "SELECT * FROM superadmin
         WHERE email = '".$email."'";
+         $result2 = mysqli_query($db, $query2);
 
 
-        $result2 = mysqli_query($db, $query2);
+
+        $qpass = 
+        "SELECT * FROM users
+        WHERE email = '".$email."' AND password = '".$password."'";
+        $resultPass = mysqli_query($db, $qpass);
 
  		
         while(($result1 || $result2) >= 1){
@@ -46,16 +51,23 @@ $tempUserRole = 0;
         if(mysqli_num_rows($result1)>=1)
             { 
         	 $tempUserRole = 1;
-        	 echo 'The username or password are correct!';
-            $login_ok = true;
-            break;
+        	
+             if(mysqli_num_rows($resultPass)>=1){
+                echo 'The username and password are correct!';
+                $login_ok = true;
+                break;
+            }
 
             }
 
         if(mysqli_num_rows($result2)>=1)
             { 
-             $tempUserRole = 2;
-             echo 'The username or password are correct!';
+            $tempUserRole = 2;
+            if(mysqli_num_rows($resultPass)>=1){
+                echo 'The username and password are correct!';
+                $login_ok = true;
+                break;
+            }
             $login_ok = true;
             break;
 
@@ -64,7 +76,13 @@ $tempUserRole = 0;
 
         else
             {
-           echo 'The username or password are incorrect!';
+            $message = "Username and/or Password incorrect.\\nTry again.";
+                echo "<script type='text/javascript'>
+                alert('$message');
+                window.location.href = 'loginBootstrap.html';
+
+
+                </script>";
            break;
             }
 
@@ -89,3 +107,4 @@ if($login_ok == true){
         }
 
 ?>
+
