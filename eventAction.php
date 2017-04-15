@@ -133,10 +133,10 @@ mysqli_select_db($db, $dbname) or die("cannot select DB");
 
 
   
-/*
+
 
      header("Location: EventRequest.html"); 
-            die("Redirecting to: EventRequest.html");  */
+            die("Redirecting to: EventRequest.html");  
 
 	//close connection sql
 
