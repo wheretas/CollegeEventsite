@@ -1,4 +1,4 @@
-$(function() {
+/*$(function() {
 	$('#createEventNav').hide();
     $('#createUniNav').hide();
     var userRole=getUserRole();
@@ -25,3 +25,4 @@ $(function() {
     	return 1;
     }
 });
+*/

@@ -18,7 +18,6 @@ $db = mysqli_connect($dbhost,$dbuser,$dbpass,$dbname) or die("cannot connect");
 
 mysqli_select_db($db, $dbname) or die("cannot select DB");
 
-	echo "hello";
 
 	if(isset($_POST)) {
 
@@ -40,14 +39,18 @@ mysqli_select_db($db, $dbname) or die("cannot select DB");
 
 		$locationName = $_POST['locationName'];
 
+		$latitude = $_POST['latitude'];
+
+		$longitude = $_POST['longitude'];
+
 		
 		//echo "member Emails $emails";
 
 	}
 
-	echo $email;
-
-		echo $eventname;
+	echo $category; 
+	echo "     ";
+	echo $type;
 	//cheqear sino hay RSO repetido
 	//agregar al admn
 	//chequear si hay mas de 4 emails
@@ -56,6 +59,24 @@ mysqli_select_db($db, $dbname) or die("cannot select DB");
 	//echo "<script type="text/javascript">validateForm();</script>";
 
 		$eventCreate = false;
+
+
+		$createEvent = 
+						"INSERT INTO eventlocation
+							(locationName, latitude, longitude )					
+						values
+							('$locationName','$latitude', '$longitude')";
+
+
+					$resultLocation = mysqli_query($db, $createEvent) or die(mysqli_error($db));
+
+					
+					echo $locationName;
+
+		
+		$autoInc = mysqli_insert_id($db);
+
+		echo $autoInc;
 
 		//checks if valid student 
 		$query1 = 
@@ -84,15 +105,15 @@ mysqli_select_db($db, $dbname) or die("cannot select DB");
   					//break;
         		}
 				////MISSING DATENTIME AND LOCATION NAME AND EMAIL
-				$query3 = 
+				$createEvent = 
 						"INSERT INTO admincreatesevent
-							(name,email,category,type,contact_email,contact_phone,description,locationName)					
+							(name,email,category,type,contactEmail,contactPhone,description,locationName, eventID)					
 						values
-							('$eventname','$email'.'$category','$type','$contact_email','$contact_phone','$description','$locationName')";
+							('$eventname','$email','$category','$type','$contact_email','$contact_phone','$description','$locationName', '$autoInc')";
 
 
-					$result3 = mysqli_query($db, $query3);
-
+					$result3 = mysqli_query($db, $createEvent) or die(mysqli_error($db));
+					
 				}
          
         		
@@ -108,13 +129,19 @@ mysqli_select_db($db, $dbname) or die("cannot select DB");
            		//break;
       		}
 
-  error_reporting(E_ALL); OR error_reporting(-1);
+  error_reporting(E_ALL) OR error_reporting(-1);
+
+
+  
 /*
 
      header("Location: EventRequest.html"); 
-            die("Redirecting to: EventRequest.html"); */
+            die("Redirecting to: EventRequest.html");  */
 
 	//close connection sql
+
+
+
 	mysqli_close($db);
 
 ?>	
