@@ -107,9 +107,9 @@ mysqli_select_db($db, $dbname) or die("cannot select DB");
 				////MISSING DATENTIME AND LOCATION NAME AND EMAIL
 				$createEvent = 
 						"INSERT INTO admincreatesevent
-							(name,email,category,type,contactEmail,contactPhone,description,locationName, eventID)					
+							(name,email,category,type,contactEmail,contactPhone,description,locationName, eventID, date, time)					
 						values
-							('$eventname','$email','$category','$type','$contact_email','$contact_phone','$description','$locationName', '$autoInc')";
+							('$eventname','$email','$category','$type','$contact_email','$contact_phone','$description','$locationName', '$autoInc', '$date', '$time')";
 
 
 					$result3 = mysqli_query($db, $createEvent) or die(mysqli_error($db));

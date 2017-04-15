@@ -1,5 +1,7 @@
 <!--myEvents.html 3/21/17-->
+
 <!DOCTYPE html>
+
 <html lang="en">
   <head>
    <meta charset="utf-8">
@@ -88,12 +90,47 @@
             <th>#</th>
             <th>Name</th>
             <th>Date</th>
-            <th>RSO</th>
-            <th>Duration</th>
+            <th>Location</th>
+            <th>Category</th>
            </tr>
           </thead>
-          <tbody>
-           <tr class="clickable-row" data-href='Event.html'>
+
+
+
+          <?php
+          session_start();
+          ini_set('display_errors', 1);
+          ini_set('display_startup_errors', 1);
+          $email = $_SESSION['varemail'];
+
+          $dbhost = "localhost";
+          $dbuser = "web";
+          $dbpass = "localpassword";
+          $dbname = "eventsite";
+          $db = mysqli_connect($dbhost,$dbuser,$dbpass,$dbname) or die("cannot connect"); 
+
+
+          mysqli_select_db($db, $dbname) or die("cannot select DB");
+
+
+          $query = "SELECT * FROM admincreatesevent";
+
+          $result = mysqli_query($db, $query) or die(mysqli_error($db));
+
+          echo "<tbody>";
+          while($row = mysqli_fetch_array($result)){   //Creates a loop to loop through results
+          echo "<tr><td>" . $row['eventID'] . "</td><td>" . $row['name'] . "</td><td>" . $row['date'] . "</td><td>" . $row['locationName'] .  "</td><td>" . $row['category'] ."</td></tr>";  
+          }
+
+          echo "</tbody>"; //Close the table in HTML
+
+
+
+            mysqli_close($db);
+
+          ?>  
+        <!--  <tbody>
+           <tr>
             <td>1,001</td>
             <td>Lorem</td>
             <td>ipsum</td>
@@ -205,7 +242,7 @@
             <td>in</td>
             <td>libero</td>
            </tr>
-          </tbody>
+          </tbody> -->
         </table>
         
       </main>
@@ -228,3 +265,5 @@
 
   </body>
 </html>
+
+

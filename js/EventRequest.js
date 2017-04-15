@@ -1,3 +1,4 @@
+
 $(function() {
 	$('#errorAlert').hide();
 	$('#successAlert').hide();
@@ -31,9 +32,12 @@ $(function() {
 		$('#successAlert').hide();
 		var errors = 0;
 		var time_regex = /^([0-1]?[0-9]|2[0-4]):([0-5][0-9])(:[0-5][0-9])?$/;
-		var date_regex = /^(0[1-9]|1[0-2])\/(0[1-9]|1\d|2\d|3[01])\/(19|20)\d{2}$/;
+		//var date_regex = /^(19|20)\-(0[1-9]|1[0-2])\-(0[1-9]|1\d|2\d|3[01])\d{2}$/;
 		var email_regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
 		var phone_regex = /^[(]{0,1}[0-9]{3}[)]{0,1}[-\s\.]{0,1}[0-9]{3}[-\s\.]{0,1}[0-9]{4}$/;
+
+		//var date_regex = /^(19|20)\-(0[1-9]|1[0-2])\-(0[1-9]|1\d|2\d|3[01])\d{2}$/;
+
 
 		if($('#title').val() == "")
 			errors++;
@@ -41,11 +45,11 @@ $(function() {
 		if($('#description').val() == "")
 			errors++;
 
-		if(!date_regex.test($('#date').val()))
-			errors++;
+		//if(!date_regex.test($('#date').val()))
+			//errors++;
 
-		if(!time_regex.test($('#time').val()))
-			errors++;
+		//if(!time_regex.test($('#time').val()))
+			//errors++;
 
 		if(!phone_regex.test($('#contact_phone').val()))
 			errors++;
@@ -69,3 +73,5 @@ $(function() {
 
 	}
 });
+
+

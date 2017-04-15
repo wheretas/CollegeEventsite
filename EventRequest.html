@@ -27,7 +27,7 @@
 
 
 
-	<script type="text/javascript" src='https://maps.google.com/maps/api/js?sensor=false&libraries=places'></script> 
+	<script language="javascript" src="https://maps.googleapis.com/maps/api/js?v=3"></script>
 
 
 
@@ -80,7 +80,7 @@
 			 <a class="nav-link" href="RSORequest.html">Request New RSO</a>
 		  </li>
 		  <li class="nav-item">
-			 <a id="createEventNav" class="nav-link active" href="EventRequest.hmtl">Create New Event<span class="sr-only">(current)</span></a>
+			 <a id="createEventNav" class="nav-link active" href="EventRequest.html">Create New Event<span class="sr-only">(current)</span></a>
 		  </li>
 		  <li class="nav-item">
 			 <a class="nav-link" href="RSOSearch.html">RSO Search</a>
@@ -97,18 +97,18 @@
 			  <div class="panel panel-default">
 			    <div class="panel-heading">Event General Information</div>
 			    <div class="panel-body">
-			    	<div id="errorAlert" class="hide alert alert-danger">
+			    	<!--<div id="errorAlert" class="hide alert alert-danger">
 					  <strong>Error!</strong> You have made a mistake in your submission. Please correct it and try again. 
 					</div>
 					<div id="successAlert" class="alert alert-success">
 					  <strong>Success!</strong> Your Event Request has been successfully submitted. 
-					</div>
+					</div> -->
 			<form id="infosubmit" method="POST" action="/eventAction.php">
 			  	    	<div class="row">
 				    		<div class="col-md-12">
 				    			<div class="form-group">
 				    				<label for="title">Event Title</label>
-				    				<input type="text" class="form-control" id="title" name ="title" placeholder="Enter Title">
+				    				<input type="text" class="form-control" id="title" name ="title" placeholder="Enter Title" required="">
 				    			</div>
 				    		</div>
 				    	</div>
@@ -116,9 +116,9 @@
 				    		<div class="col-md-6">
 					    		<div class="form-group">
 					    			<label for="cat">Event Category</label>
-					    			<select id="cat" name="cat" class="form-control">
+					    			<select id="cat" name="cat" class="form-control" required="">
 					    				<option></option>
-					    				<option value="Sports">Social</option>
+					    				<option value="Sports">Sports</option>
 					    				<option value="Fundraiser">Fundraiser</option>
 					    				<option value="Food">Food</option>
 					    				<option value="Tech Talks">Tech Talks</option>
@@ -130,7 +130,7 @@
 				    		<div class="col-md-6">
 				    			<div class="form-group">
 					    			<label for="type">Type</label>
-					    			<select id="type" name="type" class="form-control">
+					    			<select id="type" name="type" class="form-control" required="">
 					    				<option></option>
 					    				<option value="Public">Public</option>
 					    				<option value="Private">Private</option>
@@ -143,7 +143,7 @@
 				    		<div class="col-md-12">
 					    		<div class="form-group">
 							        <label class="control-label" for="description">Description</label>
-							        <textarea id="description" name="description" class="form-control" rows="3"></textarea>
+							        <textarea id="description" name="description" class="form-control" rows="3" required=""></textarea>
 							    </div>
 				    		</div>
 				    	</div>
@@ -151,13 +151,13 @@
 				    		<div class="col-md-6">
 				    			<div class="form-group">
 				    				<label class="control-label" for="date">Date</label>
-				    				<input class="form-control" id="date" name="date" type="text" placeholder="mm/dd/yyyy">
+				    				<input class="form-control" id="date" name="date" type="date" required="">
 				    			</div>
 				    		</div>
 				    		<div class="col-md-6">
 				    			<div class="form-group">
 				    				<label class="control-label" for="time">Time</label>
-				    				<input class="form-control" id="time" name="time" type="text" placeholder="hh:mm">
+				    				<input class="form-control" id="time" name="time" type="time" required="">
 				    			</div>
 				    		</div>
 				    	</div>
@@ -165,13 +165,13 @@
 				    		<div class="col-md-6">
 				    			<div class="form-group">
 				    				<label class="control-label" for="contact_phone">Contact Phone Number</label>
-				    				<input class="form-control" id="contact_phone" name="contact_phone" type="text" placeholder="xxx-xxx-xxxx">
+				    				<input class="form-control" id="contact_phone" name="contact_phone" type="text" placeholder="xxx-xxx-xxxx" required="">
 				    			</div>
 				    		</div>
 				    		<div class="col-md-6">
 				    			<div class="form-group">
 				    				<label class="control-label" for="contact_email">Contact Email Address</label>
-				    				<input class="form-control" id="contact_email" type="email" name="contact_email" aria-describedby="emailHelp" placeholder="Enter Event Contact Email">
+				    				<input class="form-control" id="contact_email" type="email" name="contact_email" aria-describedby="emailHelp" placeholder="Enter Event Contact Email" required="">
 				    			</div>
 				    		</div>
 				    	</div>
@@ -192,7 +192,7 @@
 								                            <label class="col-sm-2 control-label" for="locationName">Location:</label>
 
 								                            <div class="col-sm-10">
-								                                <input type="text" name="locationName" class="form-control" id="locationName" />
+								                                <input type="text" name="locationName" class="form-control" id="locationName" required="" />
 								                            </div>
 								                        </div>
 								                        <div class="form-group">
@@ -219,16 +219,16 @@
 								                        <div class="clearfix"></div>
 								                        <script>
 								                            $('#us3').locationpicker({
-								                                location: {
-								                                    latitude: 28.60257103063807,
-								                                    longitude: -81.2001131225586
-								                                },
-								                                radius: 100,
-								                                inputBinding: {
-								                                    latitudeInput: $('#us3-lat'),
-								                                    longitudeInput: $('#us3-lon'),
-								                                    radiusInput: $('#us3-radius'),
-								                                    locationNameInput: $('#us3-address')
+								                             location: {
+								                             latitude: 28.60257103063807,
+								                             longitude: -81.2001131225586
+								                             },
+								                             radius: 100,
+								                             inputBinding: {
+								                             latitudeInput: $('#us3-lat'),
+								                             longitudeInput: $('#us3-lon'),
+								                             radiusInput: $('#us3-radius'),
+								                             locationNameInput: $('#us3-address')
 								                                },
 								                                enableAutocomplete: true
 								                            });
@@ -236,7 +236,7 @@
 								                                $('#us3').locationpicker('autosize');
 								                            });
 								                        </script>
-								                    </div>
+													 </div>
 								                </div>
 								                <div class="modal-footer">
 								                    <button type="button" class="btn btn-primary" data-dismiss="modal">Save changes</button>
@@ -293,4 +293,4 @@
 
   </body>
 </html>
- 
+ --> --> -->

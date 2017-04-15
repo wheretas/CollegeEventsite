@@ -105,130 +105,51 @@
        </section>
 
        <h2>Today's Events</h2>
-        <table id="eventsTable" class="table table-striped table-hover table-bordered" cellspacing="0" width="100%">
+       <table id="myEventsTable" class="table table-striped table-hover table-bordered" cellspacing="0" width="100%">
           <thead>
            <tr>
             <th>#</th>
             <th>Name</th>
-            <th>Time</th>
-            <th>RSO</th>
-            <th>Duration</th>
+            <th>Date</th>
+            <th>Location</th>
+            <th>Category</th>
            </tr>
           </thead>
-          <tbody>
-           <tr>
-            <td>1,001</td>
-            <td>UCF Golf Fundraiser</td>
-            <td>6:00 pm</td>
-            <td>UCF Golf</td>
-            <td>3 hrs</td>
-           </tr>
-           <tr>
-            <td>1,002</td>
-            <td>UF Rowing Formal</td>
-            <td>9:00 pm</td>
-            <td>UF Rowing</td>
-            <td>4 hrs</td>
-           </tr>
-           <tr>
-            <td>1,003</td>
-            <td>23rd Annual Chess Competition</td>
-            <td>10:00 am</td>
-            <td>FSU Chess</td>
-            <td>8 hrs</td>
-           </tr>
-           <tr>
-            <td>1,003</td>
-            <td>Henley on th Hooch</td>
-            <td>5:00 am</td>
-            <td>Georgiat Tech Rowing</td>
-            <td>10 hrs</td>
-           </tr>
-           <tr>
-            <td>1,004</td>
-            <td>Pepsi Appreciation Day</td>
-            <td>6:30</td>
-            <td>Soda Fanatics</td>
-            <td>3 hrs</td>
-           </tr>
-           <tr>
-            <td>1,005</td>
-            <td>Knightthon</td>
-            <td>10:22 pm</td>
-            <td>KKB</td>
-            <td>2 hrs</td>
-           </tr>
-           <tr>
-            <td>1,006</td>
-            <td>UCF Golf Practice</td>
-            <td>5:00 am</td>
-            <td>UCF Golf</td>
-            <td>5 hrs</td>
-           </tr>
-           <tr>
-            <td>1,007</td>
-            <td>Fencing Knights Meeting</td>
-            <td>4:00 pm</td>
-            <td>Fencing Knights</td>
-            <td>4 hrs</td>
-           </tr>
-           <tr>
-            <td>1,008</td>
-            <td>SJW Practice</td>
-            <td>1:00 am</td>
-            <td>SJW's of FSU</td>
-            <td>30 min</td>
-           </tr>
-           <tr>
-            <td>1,009</td>
-            <td>FSU Swim Meet</td>
-            <td>8:00 am</td>
-            <td>FSU Swim</td>
-            <td>8 hrs</td>
-           </tr>
-           <tr>
-            <td>1,010</td>
-            <td>UCF Golf Practice</td>
-            <td>5:00 am</td>
-            <td>lacinia</td>
-            <td>arcu</td>
-           </tr>
-           <tr>
-            <td>1,011</td>
-            <td>eget</td>
-            <td>nulla</td>
-            <td>Class</td>
-            <td>aptent</td>
-           </tr>
-           <tr>
-            <td>1,012</td>
-            <td>taciti</td>
-            <td>sociosqu</td>
-            <td>ad</td>
-            <td>litora</td>
-           </tr>
-           <tr>
-            <td>1,013</td>
-            <td>torquent</td>
-            <td>per</td>
-            <td>conubia</td>
-            <td>nostra</td>
-           </tr>
-           <tr>
-            <td>1,014</td>
-            <td>per</td>
-            <td>inceptos</td>
-            <td>himenaeos</td>
-            <td>Curabitur</td>
-           </tr>
-           <tr>
-            <td>1,015</td>
-            <td>sodales</td>
-            <td>ligula</td>
-            <td>in</td>
-            <td>libero</td>
-           </tr>
-          </tbody>
+
+
+
+          <?php
+          
+
+          $dbhost = "localhost";
+          $dbuser = "web";
+          $dbpass = "localpassword";
+          $dbname = "eventsite";
+          $db = mysqli_connect($dbhost,$dbuser,$dbpass,$dbname) or die("cannot connect"); 
+
+
+          mysqli_select_db($db, $dbname) or die("cannot select DB");
+
+
+          $query = "SELECT * FROM admincreatesevent";
+
+          $result = mysqli_query($db, $query) or die(mysqli_error($db));
+
+          echo "<tbody>";
+          while($row = mysqli_fetch_array($result)){   //Creates a loop to loop through results
+          echo "<tr><td>" . $row['eventID'] . "</td><td>" . $row['name'] . "</td><td>" . $row['date'] . "</td><td>" . $row['locationName'] .  "</td><td>" . $row['category'] ."</td></tr>";  
+          }
+
+          echo "</tbody>"; //Close the table in HTML
+
+
+
+            mysqli_close($db);
+
+          ?>  
+       
+        </table>
+          
         </table>
       </main>
     </div>
