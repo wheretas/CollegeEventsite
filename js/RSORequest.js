@@ -53,5 +53,6 @@ $(function() {
 	    	return 0;
 	    }
 	    return 1;
+	    //document.forms["form"].submit();
 	}
 });

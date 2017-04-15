@@ -1,56 +1,91 @@
 <?php
-
-include("config.php");
 session_start();
+$dbhost = "localhost";
+$dbuser = "web";
+$dbpass = "localpassword";
+$dbname = "eventsite";
+$db = mysqli_connect($dbhost,$dbuser,$dbpass,$dbname) or die("cannot connect"); 
+
+ //session_start();
+mysqli_select_db($db, $dbname) or die("cannot select DB");
 
 
-$error = "";
-if($_SERVER["REQUEST_METHOD"] == "POST") {
+if (isset($_POST)) {
 
-	$myemail = $_POST['email'];
-	$mypassword = $_POST['password'];
+$email =      $_POST ['email'];
+$password =           $_POST ['password'];
+}
 
-	$sql = "SELECT * FROM users WHERE email = '$myemail' AND pssword = '$mypassword'";
-    $result = mysqli_query($db,$sql);
-      $row = mysqli_fetch_array($result,MYSQLI_ASSOC);
-      $active = $row['active'];
-      
-      $count = mysqli_num_rows($result);
-      
-      // If result matched $myusername and $mypassword, table row must be 1 row
-		
-      if($count == 1) {
-         
-         $_SESSION["email"] = $row["email"];
-         
-         header("location: index.php");
-      }else {
-         $error = "Your Login Email or Password is invalid";
-         
-      }
-   }
+$login_ok = false;
+
+
+
+$tempUserRole = 0;
+
+
+
+
+
+        
+
+       $query1 = 
+		"SELECT * FROM student
+ 		WHERE email = '".$email."'";
+        $result1 = mysqli_query($db, $query1);
+
+        $query2 = 
+        "SELECT * FROM superadmin
+        WHERE email = '".$email."'";
+
+
+        $result2 = mysqli_query($db, $query2);
+
+ 		
+        while(($result1 || $result2) >= 1){
+
+        if(mysqli_num_rows($result1)>=1)
+            { 
+        	 $tempUserRole = 1;
+        	 echo 'The username or password are correct!';
+            $login_ok = true;
+            break;
+
+            }
+
+        if(mysqli_num_rows($result2)>=1)
+            { 
+             $tempUserRole = 2;
+             echo 'The username or password are correct!';
+            $login_ok = true;
+            break;
+
+            }
+
+
+        else
+            {
+           echo 'The username or password are incorrect!';
+           break;
+            }
+
+
+        
+        }
+
+     
+$_SESSION['varname'] = $tempUserRole;
+$_SESSION['varemail'] = $email;
+
+
+Echo "Database Saved"; 
+mysqli_close($db);
+
+
+if($login_ok == true){
+
+ header("Location: index.html"); 
+            die("Redirecting to: index.html");
+
+        }
+
 ?>
-<head>
-  <link rel="stylesheet" type="text/css" href="login_css.css">
-  
-
-</head>
-
-<br><br>
-<H1 align  = "center"> EventSite </H1>
-<div class="login-page">
-  <div class="form">
-    
-    <form class="login-form" action="login.php" method="POST">
-      <input type="text" name="email" placeholder="Email"/>
-      <input type="password" name="password" placeholder="Password"/>
-      <button>login</button>
-      <p class="message">Not registered? <a href="register.php">Create an account</a></p>
-      </form>
-      <?php echo $error; ?>
-  </div>
-</div>
-
-
-
-
