@@ -38,6 +38,11 @@ $tempUserRole = 0;
         WHERE email = '".$email."'";
          $result2 = mysqli_query($db, $query2);
 
+         $query3 = 
+        "SELECT * FROM admin
+        WHERE email = '".$email."'";
+         $result3 = mysqli_query($db, $query3);
+
 
 
         $qpass = 
@@ -60,9 +65,28 @@ $tempUserRole = 0;
 
             }
 
+        if(mysqli_num_rows($result3)>=1)
+            { 
+             $tempUserRole = 2;
+            
+             if(mysqli_num_rows($resultPass)>=1){
+                echo 'The username and password are correct!';
+                $login_ok = true;
+                break;
+            }
+
+            }
+
+
+
+
+
+
+
+
         if(mysqli_num_rows($result2)>=1)
             { 
-            $tempUserRole = 2;
+            $tempUserRole = 3;
             if(mysqli_num_rows($resultPass)>=1){
                 echo 'The username and password are correct!';
                 $login_ok = true;
