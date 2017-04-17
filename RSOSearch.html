@@ -106,7 +106,7 @@
 
           $dbhost = "localhost";
           $dbuser = "web";
-          $dbpass = "passworduser";
+          $dbpass = "localpassword";
           $dbname = "eventsite";
           $db = mysqli_connect($dbhost,$dbuser,$dbpass,$dbname) or die("cannot connect"); 
 
@@ -122,7 +122,6 @@
           while($row = mysqli_fetch_array($result)){   //Creates a loop to loop through results
           $variable = $row['email'];
           //Works fine but missing the email to javascript function
-          echo '<script type="text/javascript">schoolFromEmail('$variable'.var())</script>';
           echo "<tr class='clickable-row' data-href='Event.html?key='><td>" . $row['rsoNAME'] .  "</td><td>" . $row['email'] . "</td></tr>";  
           }
 
