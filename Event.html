@@ -1,3 +1,67 @@
+<?php
+session_start();
+ini_set('display_errors', 1);
+  ini_set('display_startup_errors', 1);
+$email = $_SESSION['varemail'];
+
+$dbhost = "localhost";
+$dbuser = "web";
+$dbpass = "localpassword";
+$dbname = "eventsite";
+$db = mysqli_connect($dbhost,$dbuser,$dbpass,$dbname) or die("cannot connect"); 
+    //tests for err connection
+    
+
+
+$key = $_GET['key']; 
+
+
+
+
+
+
+
+mysqli_select_db($db, $dbname) or die("cannot select DB");
+
+
+
+ 
+
+
+
+        //checks if valid student 
+        $query1 = 
+        "SELECT * FROM admincreatesevent
+        WHERE eventID = '".$key."'";
+        $result1 = mysqli_query($db, $query1);
+
+        $row = mysqli_fetch_array($result1);
+
+          $query2 = 
+        "SELECT * FROM eventlocation
+        WHERE eventID = '".$key."'";
+        $result2 = mysqli_query($db, $query2);
+
+        $row2 = mysqli_fetch_array($result2);
+         
+         
+
+
+  error_reporting(E_ALL) OR error_reporting(-1);
+
+
+  
+
+
+    /* header("Location: EventRequest.html"); 
+            die("Redirecting to: EventRequest.html");  */
+
+	mysqli_close($db);
+
+?>  
+
+
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -100,33 +164,21 @@
 					    		<div class="col-md-12">
 					    			<div class="form-group">
 					    				<label for="title">Event Title</label>
-					    				<input class="form-control" id="title" type="text" placeholder="Enter Title" disabled>
+					    				<input class="form-control" id="title" type="text" placeholder="<?php echo $row['name'];?>" disabled>
 					    			</div>
 					    		</div>
 					    	</div>
 					    	<div class="row">
 					    		<div class="col-md-6">
 						    		<div class="form-group">
-						    			<label for="type">Event Type</label>
-						    			<select id="type" class="form-control" disabled>
-						    				<option></option>
-						    				<option value="social">Social</option>
-						    				<option value="fundraising">Fundraising</option>
-						    				<option value="speaker">Featured Speaker</option>
-						    				<option value="banquet">Banquet</option>
-						    				<option value="competition">Competition</option>
-						    			</select>
+						    			<label for="type">Event Category</label>
+						    			<input class="form-control" id="category" type="text" placeholder="<?php echo $row['category'];?>" disabled>
 						    		</div>
 					    		</div>
 					    		<div class="col-md-6">
 					    			<div class="form-group">
-						    			<label for="cat">Category</label>
-						    			<select id="cat" class="form-control" disabled>
-						    				<option></option>
-						    				<option value="public">Public</option>
-						    				<option value="private">Private</option>
-						    				<option value="rso">RSO Members Only</option>
-						    			</select>
+						    			<label for="cat">Type</label>
+						    			<input class="form-control" id="type" type="text" placeholder="<?php echo $row['type'];?>" disabled>
 						    		</div>
 					    		</div>
 					    	</div>
@@ -134,7 +186,7 @@
 					    		<div class="col-md-12">
 						    		<div class="form-group">
 								        <label class="control-label">Description</label>
-								        <textarea id="description" class="form-control" rows="3" disabled></textarea>
+								        <textarea id="description" class="form-control" rows="3" placeholder="<?php echo $row['description'];?>" disabled></textarea>
 								    </div>
 					    		</div>
 					    	</div>
@@ -142,13 +194,13 @@
 					    		<div class="col-md-6">
 					    			<div class="form-group">
 					    				<label class="control-label" for="date">Date</label>
-					    				<input class="form-control" id="date" type="text" placeholder="mm/dd/yyyy" disabled>
+					    				<input class="form-control" id="date" type="text" placeholder="<?php echo $row['date'];?>" disabled>
 					    			</div>
 					    		</div>
 					    		<div class="col-md-6">
 					    			<div class="form-group">
 					    				<label class="control-label" for="time">Time</label>
-					    				<input class="form-control" id="time" type="text" placeholder="hh:mm"disabled>
+					    				<input class="form-control" id="time" type="text" placeholder="<?php echo $row['time'];?>" disabled>
 					    			</div>
 					    		</div>
 					    	</div>
@@ -156,13 +208,13 @@
 					    		<div class="col-md-6">
 					    			<div class="form-group">
 					    				<label class="control-label" for="contact_phone">Contact Phone Number</label>
-					    				<input class="form-control" id="contact_phone" type="text" placeholder="xxx-xxx-xxxx" disabled>
+					    				<input class="form-control" id="contact_phone" type="text" placeholder="<?php echo $row['contactPhone'];?>" disabled>
 					    			</div>
 					    		</div>
 					    		<div class="col-md-6">
 					    			<div class="form-group">
 					    				<label class="control-label" for="contact_email">Contact Email Address</label>
-					    				<input class="form-control" id="contact_email" type="email" aria-describedby="emailHelp" placeholder="Enter Event Contact Email" disabled>
+					    				<input class="form-control" id="contact_email" type="text" aria-describedby="emailHelp" placeholder="<?php echo $row['contactEmail'];?>" disabled>
 					    			</div>
 					    		</div>
 					    	</div>
@@ -170,13 +222,13 @@
 					    		<div class="col-md-6">
 					    			<div class="form-group">
 					    				<label class="control-label" for="latitude">Location Latitude</label>
-					    				<input class="form-control" id="latitude" type="text" disabled>
+					    				<input class="form-control" id="latitude" type="text" placeholder="<?php echo $row2['longitude'];?>" disabled>
 					    			</div>
 					    		</div>
 					    		<div class="col-md-6">
 					    			<div class="form-group">
 					    				<label class="control-label" for="longitude">Location Longitude</label>
-					    				<input class="form-control" id="longitude" type="email" disabled>
+					    				<input class="form-control" id="longitude" type="text" placeholder="<?php echo $row2['latitude'];?>" disabled>
 					    			</div>
 					    		</div>
 					    	</div>

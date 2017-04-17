@@ -31,6 +31,13 @@
 
     <script src="js/locationpicker.jquery.min.js"></script>
     <script src="js/navBar.js"></script>
+    <script scrc="js/RSORequest.js"></script>
+
+
+
+
+
+
 
 </head>
 <header style="position: relative; top: -60px;">
@@ -60,11 +67,11 @@
 
 
 
-
 <div class="container">
       <div class="row">
       <div class="col-md-5  toppad  pull-right col-md-offset-3 ">
-           
+
+             <script src="/js/navBar.js" type="text/javascript">document.write(getUserRole().val());</script> 
        <br>
         <?php
         echo "Today is " . date("Y/m/d") . "<br>";
@@ -120,15 +127,24 @@
                     <tbody>
                       <tr>
                         <td>Account Type:</td>
-                        <td>Student_superadmmin_admin</td>   <!-- use getRole -->
+                        <td>
+                        <script src="/js/navBar.js" type="text/javascript">document.write(getUserRole().val());</script> 
+                         
+                         
+                    
+                           
+
+
+
+                        </td>   <!-- use getRole -->
                       </tr>
 
 
 
                       <tr>
-                        <td>School:</td>    <!-- use getSchool -->
+                        <td>School:</td>    <!-- use getSchool, still not implemented -->
                         <td>
-
+                           <script src="/js/RSORequest.js" type="text/javascript">document.write(schoolFromEmail(leo10@ucf.edu).val());</script> 
 
       
 
@@ -193,3 +209,5 @@
     </div>
 
     </body>
+
+ 
