@@ -53,7 +53,7 @@ $tempUserRole = 0;
  		
         while(($result1 || $result2) >= 1){
 
-        if(mysqli_num_rows($result1)>=1)
+        if(mysqli_num_rows($result1)>=1 && (!mysqli_num_rows($result3)>=1))
             { 
         	 $tempUserRole = 1;
         	
@@ -76,11 +76,6 @@ $tempUserRole = 0;
             }
 
             }
-
-
-
-
-
 
 
 
@@ -114,6 +109,8 @@ $tempUserRole = 0;
         
         }
 
+        echo $tempUserRole;
+
      
 $_SESSION['varname'] = $tempUserRole;
 $_SESSION['varemail'] = $email;
@@ -125,8 +122,8 @@ mysqli_close($db);
 
 if($login_ok == true){
 
- header("Location: index.html"); 
-            die("Redirecting to: index.html");
+/* header("Location: index.html"); 
+            die("Redirecting to: index.html"); */
 
         }
 
