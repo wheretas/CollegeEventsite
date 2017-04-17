@@ -119,10 +119,26 @@
           $result = mysqli_query($db, $query) or die(mysqli_error($db));
 
           echo "<tbody>";
+          $school = 'Unknown';
           while($row = mysqli_fetch_array($result)){   //Creates a loop to loop through results
           $variable = $row['email'];
+          $emailEnd = substr($variable, strrpos($variable, '@')+1, strlen($variable));
+          echo $emailEnd;
+          if(strrpos($emailEnd, 'ucf') !== false) {
+            $school = 'UCF';
+          }
+          if(strrpos($emailEnd, 'uf') !== false) {
+            $school = 'UF';
+          }
+          if(strrpos($emailEnd, 'fsu') !== false) {
+            $school = 'FSU';
+          }
+          if(strrpos($emailEnd, 'gt') !== false) {
+            $school = 'GT';
+          }
+
           //Works fine but missing the email to javascript function
-          echo "<tr class='clickable-row' data-href='Event.html?key='><td>" . $row['rsoNAME'] .  "</td><td>" . $row['email'] . "</td></tr>";  
+          echo "<tr class='clickable-row'><td>" . $row['rsoNAME'] .  "</td><td>" . $school . "</td></tr>";  
           }
 
           echo "</tbody>"; //Close the table in HTML
