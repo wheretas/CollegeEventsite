@@ -122,8 +122,8 @@ mysqli_close($db);
 
 if($login_ok == true){
 
-/* header("Location: index.html"); 
-            die("Redirecting to: index.html"); */
+ header("Location: index.html"); 
+            die("Redirecting to: index.html"); 
 
         }
 
