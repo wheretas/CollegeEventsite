@@ -137,7 +137,7 @@
 
           echo "<tbody>";
           while($row = mysqli_fetch_array($result)){   //Creates a loop to loop through results
-          echo "<tr><td>" . $row['eventID'] . "</td><td>" . $row['name'] . "</td><td>" . $row['date'] . "</td><td>" . $row['locationName'] .  "</td><td>" . $row['category'] ."</td></tr>";  
+          echo "<tr class='clickable-row' data-href='Event.html?key='><td>" . $row['eventID'] . "</td><td>" . $row['name'] . "</td><td>" . $row['date'] . "</td><td>" . $row['locationName'] .  "</td><td>" . $row['category'] ."</td></tr>";  
           }
 
           echo "</tbody>"; //Close the table in HTML
