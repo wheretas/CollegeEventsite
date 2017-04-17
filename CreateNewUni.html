@@ -91,35 +91,38 @@
 					  <strong>Success!</strong> Your RSO Request has been successfully submitted. 
 					</div>
 					<!--- change based on directory action-->
-			    	<form id="genInfo" method="POST" action="">
+			    	<form id="genInfo" method="POST" action="/createUni.php">
 				    	<div class="row">
 				    		<div class="col-md-12">
 				    			<div class="form-group">
-				    				<label for="title">University Title</label>
-				    				<input class="form-control" id="title" name ="title" type="text" placeholder="Enter Title">
+				    				<label for="name">University Title</label>
+				    				<input class="form-control" id="name" name ="name" type="text" placeholder="Enter University Full Name" required="">
 				    			</div>
 				    		</div>
 				    		<div class="col-md-6">
 					    		<div class="form-group">
 					    			<label for="location">Location</label>
-					    			<input class="form-control" id="location" name= "location">
+					    			<input class="form-control" id="location" name= "location" placeholder="Orlando, FL" required="">
 					    		</div>
 				    		</div>
 				    		<div class="col-md-6">
 				    			<div class="form-group">
 					    			<label for="numStudents">Number of Students</label>
-					    			<input class="form-control" id="numStudents" name= "numStudents">
+					    			<input class="form-control" id="numStudents" name= "numStudents" placeholder="60000" required="">
 					    		</div>
 				    		</div>
 				    	</div>
-				    	<div class="row">
-				    		<div class="col-md-12 ">
-					    		<div class="form-group">
-							        <label class="control-label">Description</label>
-							        <textarea id="description" name = "description" class="form-control" rows="3"></textarea>
-							    </div>
+				    	<div class="col-sm-3" >
+								<div class="form-group" >
+					    			<label for="type">Type</label>
+					    			<select id="type" name="type" class="form-control" required="">
+					    				<option></option>
+					    				<option value="Public">Public</option>
+					    				<option value="Private">Private</option>
+					    				
+					    			</select>
+					    		</div>
 				    		</div>
-				    	</div>
 				    	<div class="row">
 				    		<div class="col-md-3">
 				    			<div class="form-group">

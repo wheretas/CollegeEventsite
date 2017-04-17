@@ -143,15 +143,83 @@
 
                       <tr>
                         <td>School:</td>    <!-- use getSchool, still not implemented -->
-                        <td>
-                           <script src="/js/RSORequest.js" type="text/javascript">document.write(schoolFromEmail(leo10@ucf.edu).val());</script> 
+                       
+                          <div id="dom-target" >
 
-      
+                                     <?php
+                                  
+                                    $email = $_SESSION['varemail'];
+
+                                    $dbhost = "localhost";
+                                    $dbuser = "web";
+                                    $dbpass = "localpassword";
+                                    $dbname = "eventsite";
+                                    $db = mysqli_connect($dbhost,$dbuser,$dbpass,$dbname) or die("cannot connect"); 
+
+                                 
+                                    
+
+
+                                   
+
+                                   
+
+                                  
+                                    echo "<td id='demo'></td>"; 
+                                     
+                                   
+                                    
+                                  
+                                    
+                                     
+
+                                    ?> 
+
+                                    </div>
+                                   
+
+                                   <script type="text/javascript">
+                                
+                                       
+                                        var js_variable  = '<?php echo $email;?>';
+
+                                        alert(js_variable);
+                                       
+                                      var x = schoolFromEmail(js_variable); 
+
+                                      function schoolFromEmail(email) 
+                                        {
+                                          var address = email.toString().substring(email.indexOf('@')+1, email.length);
+                                          if(address.includes("ucf"))
+                                          {
+                                           
+                                            return 'UCF';
+                                          }
+                                          if(address.includes("uf"))
+                                            return 'UF';
+                                          if(address.includes("fsu"))
+                                            return 'FSU';
+                                          if(address.includes("gt"))
+                                            return 'GT';
+                                          else
+                                            return 'N/A';
+
+                                        }    
+
+                                         document.getElementById("demo").innerHTML = x;
+                                     
+                                     
+
+                                      </script>
 
 
 
 
-                        </td>
+
+
+
+
+
                       </tr>
                        
                              
