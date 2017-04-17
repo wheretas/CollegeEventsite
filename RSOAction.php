@@ -26,70 +26,110 @@
 		//echo "member Emails $emails";
 
 	}
-	//cheqear sino hay RSO repetido
-	//agregar al admn
-	//chequear si hay mas de 4 emails
-	
-	//echo "merpipeee";
-	//echo "<script type="text/javascript">validateForm();</script>";
 
-		$rsoCreate = false;
+	$domainlist = array("@ucf.edu","@uf.edu","@fsu.edu","@gt.edu");
 
-		//checks if valid student 
-		$query1 = 
+	$splitEmails = explode(",",$emails);
+	$domainNew = $domain -1;
+
+	$check =validateInfo($rsoname,$domain,$id,$splitEmails,$db,$domainlist);
+
+	echo "$check";
+
+	//echo "merpipee";
+
+	if($check ==1){
+		
+		populateDatabase($id,$rsoname,$splitEmails,$db);
+		echo "input in database";
+	}   
+
+function validateInfo($rso,$domain,$id,$emails,$database,$schools){
+	$query1 = 
 		"SELECT * FROM student
  		WHERE email = '".$id."'";
-        $result1 = mysqli_query($db, $query1);
+    
+    $result1 = mysqli_query($database, $query1);
 
-        //checks if name is not repeated
-        $query2 = 
-        "SELECT * FROM rso
-        WHERE rsoNAME = '".$rsoname."'";
-        $result2 = mysqli_query($db, $query2);
+    //checks if name is not repeated
+    //echo "totaaa         ";
+    $query2 = 
+     	"SELECT * FROM rso
+        WHERE rsoNAME = '".$rso."'";
+        
+    $result2 = mysqli_query($database, $query2);
+
+    if(mysqli_num_rows($result1)>=1){ 
+       	echo "The admin email is valid"; 
+
+        if(mysqli_num_rows($result2)>=1){ 
+            echo "Repeated RSO Name!";
+  			return 0;
+        }
+    }
+
+    else{
+    	echo "admin email is invalid";
+        return 0;
+    }
 
 
-        	if(mysqli_num_rows($result1)>=1){ 
-        		echo 'The domain email is valid';
-         
-        		if(mysqli_num_rows($result2)>=1){ 
-            		echo 'Repeated RSO Name!';
-  					//break;
-        		}
+	foreach( $emails as $em){
+		//echo $em;
+		$emailquery = "SELECT * FROM student
+ 						WHERE email = '".$em."'";
 
-        		else{
-        			$query3 = 
-						"INSERT INTO admin
+       	$result1 = mysqli_query($database, $emailquery);
+
+        $validateDom = strpos($em, $schools[$domain-1]);
+        //echo $validateDom;
+
+       	if(mysqli_num_rows($result1)<1 or $validateDom < 1){
+        	return 0;
+        } 
+
+        //echo "merd";
+        		
+	}
+
+	return 1;
+
+}
+
+
+function populateDatabase($id,$rsoname,$emails,$db){
+
+		//populate db from rso request
+	foreach ($emails as $em) {
+		$query1 = "INSERT INTO studentjoinsrso
 							(email)
 						values
-							('$id')";
+							('$em')";
+		$res = mysqli_query($db, $query1);
+	}
 
-					$query4 = 
-						"INSERT INTO RSO
-							(rsoNAME,email)
-						values
-							('$rsoname','$id')";
+	$query3 = 
+		"INSERT INTO admin
+					(email)
+				values
+					('$id')";
 
-					$result3 = mysqli_query($db, $query3);
-					$result4 = mysqli_query($db, $query4);
+	$query4 = 
+		"INSERT INTO RSO
+					(rsoNAME,email)
+				values
+				('$rsoname','$id')";
 
-        		}
+	$result3 = mysqli_query($db, $query3);
+	$result4 = mysqli_query($db, $query4);
 
-        	}
-
-        	//check all emails and add to student joins RSO
-
-        	else{
-           		echo 'Not valid username';
-           		//break;
-      		}
-
-
-
-
-     //header("Location: RSORequest.html"); 
-          //  die("Redirecting to: RSORequest.html");
+}
+ 
+header("Location: RSORequest.html"); 
+            die("Redirecting to: RSORequest.html");
 
 	//close connection sql
 	mysqli_close($db);
+
 
 ?>	

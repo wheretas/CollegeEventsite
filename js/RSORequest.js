@@ -50,9 +50,9 @@ $(function() {
 	    {
 	    	console.log(errors);
 	    	$('#errorAlert').show();
-	    	return 0;
+	    	return false;
 	    }
-	    return 1;
+	    return true;
 	    //document.forms["form"].submit();
 	}
 
@@ -70,5 +70,7 @@ $(function() {
 			return 'GT';
 		else
 			return 'N/A';
+
 	}
+
 });

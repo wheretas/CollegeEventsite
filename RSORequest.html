@@ -38,7 +38,7 @@
 		  <a class="nav-link" href="index.html">Home</a>
 		 </li>
 		 <li class="nav-item">
-		  <a class="nav-link" href="profilePage.html">Profile</a>
+		  <a class="nav-link" href="#">Profile</a>
 		 </li>
 		 <li class="nav-item">
 		  <a class="nav-link" href="#">Help</a>
@@ -91,7 +91,7 @@
 					  <strong>Success!</strong> Your RSO Request has been successfully submitted. 
 					</div>
 					<!--- change based on directory action-->
-			    	<form id="genInfo" method="POST" action="/RSOAction.php">
+			    	<form id="genInfo" method="POST" action="/Database Project/RSOAction.php" onsubmit="return validateForm()"> 
 				    	<div class="row">
 				    		<div class="col-md-12">
 				    			<div class="form-group">
@@ -130,7 +130,7 @@
 				    		<div class="col-md-3">
 				    			<div class="form-group">
 				    				<!--- could change bak to type button maybe add onclick-->
-				    				<button type="submit" id="submitBtn" class="form-control btn btn-primary">Submit</button>
+				    				<button type="submit" id="submitBtn"  onclclass="form-control btn btn-primary" >Submit</button>
 				    			</div>
 				    		</div>
 				    		<div class="col-md-3">
