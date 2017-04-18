@@ -165,7 +165,19 @@
                                     $dbname = "eventsite";
                                     $db = mysqli_connect($dbhost,$dbuser,$dbpass,$dbname) or die("cannot connect"); 
 
-                                 
+                                    $currUserEmailEnd = substr($email, strrpos($email, '@')+1, strlen($email));
+                                    if(strrpos($currUserEmailEnd, 'ucf') !== false) {
+                                      $currUserSchool = 'UCF';
+                                    }
+                                    if(strrpos($currUserEmailEnd, 'uf') !== false) {
+                                      $currUserSchool = 'UF';
+                                    }
+                                    if(strrpos($currUserEmailEnd, 'fsu') !== false) {
+                                      $currUserSchool = 'FSU';
+                                    }
+                                    if(strrpos($currUserEmailEnd, 'gt') !== false) {
+                                      $currUserSchool = 'GT';
+                                    }
                                     
 
 
@@ -174,7 +186,7 @@
                                    
 
                                   
-                                    echo "<td id='demo'></td>"; 
+                                    echo "<td>" . $currUserSchool . "</td>"; 
                                      
                                    
                                     
