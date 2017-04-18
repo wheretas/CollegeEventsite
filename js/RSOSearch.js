@@ -14,6 +14,23 @@ $(function() {
 		    buttons: {
 		        confirm: function () {
 		        	//TODO add user to this RSO
+
+
+		        	$.ajax({
+				       type: "POST",
+				       url: "rsoUserAdd.php",
+				       data: "",
+				       dataType: "json",
+				       ,
+				    });
+
+
+
+
+
+
+
+
 		            $.alert('You have joined '+RSOName);
 		        },
 		        cancel: function () {
