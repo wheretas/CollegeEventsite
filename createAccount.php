@@ -13,6 +13,7 @@ $email =      $_POST ['email'];
 $first_name =       $_POST ['first_name'];
 $last_name=  $_POST['last_name'];
 $password =           $_POST ['password'];
+$confirm = $_POST['passwordConfirm'];
 $selectUser =           $_POST ['selectUser'];
 
 
@@ -26,7 +27,8 @@ if($selectUser == "1"){
 }
 
 
-$query = 
+if($password == $passwordConfirm){
+		$query = 
 "INSERT INTO users
 (email,first_name,last_name,password)
 
@@ -58,6 +60,12 @@ values
 $result = mysqli_query($db, $query);
 $result2 = mysqli_query($db, $queryStudent);
 $result3 = mysqli_query($db, $querySuperAdmin);
+}
+
+else{
+	echo "passwords do not match";
+}
+
 
  header("Location: loginBootstrap.html"); 
             die("Redirecting to: loginBootstrap.html");
