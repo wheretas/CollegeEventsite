@@ -16,7 +16,7 @@ $password =           $_POST ['password'];
 $confirm = $_POST['passwordConfirm'];
 $selectUser =           $_POST ['selectUser'];
 
-$success = 0;
+$success = false;
 
 if($selectUser == "1"){
 	echo "You picked are student!!";
@@ -29,41 +29,47 @@ if($selectUser == "1"){
 
 if($password == $confirm){
 		$query = 
-"INSERT INTO users
-(email,first_name,last_name,password)
+			"INSERT INTO users
+			(email,first_name,last_name,password)
 
-values
+			values
 
-('$email','$first_name','$last_name','$password')";
+			('$email','$first_name','$last_name','$password')";
 
 
 if($selectUser == "1"){
 	$queryStudent = 
-"INSERT INTO student
-(email)
+		"INSERT INTO student
+		(email)
 
-values
+		values
 
-('$email')";
+		('$email')";
 
+		$result2 = mysqli_query($db, $queryStudent);
+		$sucess = true;
 
-} else{
+} 
+
+if($selectUser == "2"){
 	$querySuperAdmin = 
-"INSERT INTO superadmin
-(email)
+	"INSERT INTO superadmin
+		(email)
 
-values
+		values
 
-('$email')";
+		('$email')";
+		$result3 = mysqli_query($db, $querySuperAdmin);
+		$sucess = true;
 }
 
 $result = mysqli_query($db, $query);
-$result2 = mysqli_query($db, $queryStudent);
-$result3 = mysqli_query($db, $querySuperAdmin);
+	
+
 }
 
 else{
-	$success = 1;
+	$success = false;
 	$message = "Passwords Do Not Match.\\nTry again.";
                 echo "<script type='text/javascript'>
                 alert('$message');
@@ -74,7 +80,7 @@ else{
          
 }
 
-if($success = 0){
+if($success = true){
  header("Location: loginBootstrap.html"); 
             die("Redirecting to: loginBootstrap.html");
 }
