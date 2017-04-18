@@ -160,9 +160,17 @@
               $currUserSchool = 'GT';
             }
 
+            //retrieve RSO's student belongs to
+
+            //$rsoQuery = "SELECT rsoName FROM studentjoinsrso WHERE email = $currUserEmail"
+            //$rsoResult = mysqli_query($db, $rsoQuery) or die(mysqli_error($db));
 
           //Creates a loop to loop through results
           while($row = mysqli_fetch_array($result)) { 
+
+            //while($rsoRow = mysqli_fetch_array($rsoResult)) {
+              //if($row['type'] == 'Private')
+            //}
 
             //gets school of event
             $creatorEmail = $row['email']; 
