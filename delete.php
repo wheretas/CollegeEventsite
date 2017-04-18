@@ -10,7 +10,7 @@ $db = mysqli_connect($dbhost,$dbuser,$dbpass,$dbname) or die("cannot connect");
  //session_start();
 mysqli_select_db($db, $dbname) or die("cannot select DB");
 
-
+$name = $_SESSION['varcomm'];
 $select= $_GET['del_id'];
 
 
@@ -20,13 +20,37 @@ $select= $_GET['del_id'];
 
 
 
-$sql = "DELETE FROM studentcomments WHERE id = $select";
 
-$key = "SELECT eventID FROM admincreatesevent WHERE name = $del_id";
+
+
+
+
+
+
+$sql = "DELETE FROM studentcomments WHERE id = $select";
 
 $query=mysqli_query($db, $sql);
 
-header("Refresh:0; url=Event.html?key=$key"); 
-            die("Redirecting to: index.html");
+
+
+
+$key = "SELECT eventID FROM admincreatesevent WHERE name = '".$name."'";
+ $query10=mysqli_query($db, $key);
+    $result9 = mysqli_fetch_array($query10);
+    $done = $result9['eventID'];
+
+
+    header("Refresh:0; url=Event.html?key=$done"); 
+                die("Redirecting to: index.html"); 
+
+
+
+
+
+
+
+
+
+
 
 ?>

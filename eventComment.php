@@ -94,13 +94,19 @@ $autoInc = mysqli_insert_id($db);
   
 
 
-    /* header("Location: EventRequest.html"); 
+/*     header("Location: EventRequest.html"); 
             die("Redirecting to: EventRequest.html");  */
 
-	$key = "SELECT eventID FROM admincreatesevent WHERE name = $del_id";
+            echo $name;
 
-    $query=mysqli_query($db, $sql);
+	$key = "SELECT eventID FROM admincreatesevent WHERE name = '".$name."'";
+     $query10=mysqli_query($db, $key);
+    $result9 = mysqli_fetch_array($query10);
+    $done = $result9['eventID'];
 
-    header("Refresh:0; url=Event.html?key=$key"); 
-                die("Redirecting to: index.html");
+   
+
+
+    header("Refresh:0; url=Event.html?key=$done"); 
+                die("Redirecting to: index.html"); 
 ?>  
