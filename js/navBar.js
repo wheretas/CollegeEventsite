@@ -24,7 +24,6 @@ $(function() {
             if(realUserRole>=2)
             {
                 $('#createEventNav').show();
-                $('#rsoRequest').hide();
             }
             if(realUserRole==3)
             {

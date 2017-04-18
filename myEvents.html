@@ -117,9 +117,46 @@
 
           $result = mysqli_query($db, $query) or die(mysqli_error($db));
 
+          $currUserEmail = $_SESSION['varemail'];
+          $currUserEmailEnd = substr($currUserEmail, strrpos($currUserEmail, '@')+1, strlen($currUserEmail));
+            if(strrpos($currUserEmailEnd, 'ucf') !== false) {
+              $currUserSchool = 'UCF';
+            }
+            if(strrpos($currUserEmailEnd, 'uf') !== false) {
+              $currUserSchool = 'UF';
+            }
+            if(strrpos($currUserEmailEnd, 'fsu') !== false) {
+              $currUserSchool = 'FSU';
+            }
+            if(strrpos($currUserEmailEnd, 'gt') !== false) {
+              $currUserSchool = 'GT';
+            }
+
           echo "<tbody>";
-          while($row = mysqli_fetch_array($result)){   //Creates a loop to loop through results
-          echo "<tr class='clickable-row' data-href='Event.html?key='><td>" . $row['eventID'] . "</td><td>" . $row['name'] . "</td><td>" . $row['date'] . "</td><td>" . $row['locationName'] .  "</td><td>" . $row['category'] ."</td></tr>";  
+
+          //Creates a loop to loop through results
+          while($row = mysqli_fetch_array($result)) {
+
+            //gets school of event
+            $creatorEmail = $row['email']; 
+            $emailEnd = substr($creatorEmail, strrpos($creatorEmail, '@')+1, strlen($creatorEmail));
+            if(strrpos($emailEnd, 'ucf') !== false) {
+              $eventSchool = 'UCF';
+            }
+            if(strrpos($emailEnd, 'uf') !== false) {
+              $eventSchool = 'UF';
+            }
+            if(strrpos($emailEnd, 'fsu') !== false) {
+              $eventSchool = 'FSU';
+            }
+            if(strrpos($emailEnd, 'gt') !== false) {
+              $eventSchool = 'GT';
+            }
+
+            //add rso event check
+            if(($row['type'] == 'Private' && $currUserSchool == $eventSchool)) {
+              echo "<tr class='clickable-row' data-href='Event.html?key='><td>" . $row['eventID'] . "</td><td>" . $row['name'] . "</td><td>" . $row['date'] . "</td><td>" . $row['locationName'] .  "</td><td>" . $row['category'] ."</td></tr>";  
+              }
           }
 
           echo "</tbody>"; //Close the table in HTML

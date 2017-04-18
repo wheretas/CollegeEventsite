@@ -135,7 +135,10 @@
           if(strrpos($emailEnd, 'gt') !== false) {
             $school = 'GT';
           }
-          echo "<tr class='clickable-row' data-href='Event.html?key='><td>" . $row['eventID'] . "</td><td>" . $row['name'] . "</td><td>" . $row['date'] . "</td><td>" . $row['locationName'] .  "</td><td>" . $school . "</td></tr>";  
+
+          if($row['type'] == 'Public') {
+          echo "<tr class='clickable-row' data-href='Event.html?key='><td>" . $row['eventID'] . "</td><td>" . $row['name'] . "</td><td>" . $row['date'] . "</td><td>" . $row['locationName'] .  "</td><td>" . $school . "</td></tr>"; 
+          } 
            
           }
        
