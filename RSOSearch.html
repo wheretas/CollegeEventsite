@@ -123,7 +123,6 @@
           while($row = mysqli_fetch_array($result)){   //Creates a loop to loop through results
           $variable = $row['email'];
           $emailEnd = substr($variable, strrpos($variable, '@')+1, strlen($variable));
-          echo $emailEnd;
           if(strrpos($emailEnd, 'ucf') !== false) {
             $school = 'UCF';
           }
