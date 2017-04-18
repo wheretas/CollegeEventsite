@@ -61,8 +61,8 @@ echo $email;
 
 
 
-/* header("Location: RSOSearch.html"); 
-            die("Redirecting to: RSOSearch.html"); */
+ header("Location: RSOSearch.html"); 
+            die("Redirecting to: RSOSearch.html"); 
 
 mysqli_close($db);
 
