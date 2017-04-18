@@ -1,6 +1,7 @@
 $(function() {
 	$('#createEventNav').hide();
     $('#createUniNav').hide();
+
     var userRole=getUserRole();
 
     //console.log('userole: '+userRole);
@@ -23,10 +24,12 @@ $(function() {
             if(realUserRole>=2)
             {
                 $('#createEventNav').show();
+                $('#rsoRequest').hide();
             }
             if(realUserRole==3)
             {
                 $('#createUniNav').show();
+                $('#rsoRequest').hide();
             }
     	})
     	.fail(function() {
