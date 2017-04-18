@@ -25,6 +25,10 @@ SET time_zone = "+00:00";
 --
 -- Table structure for table `admin`
 --
+CREATE DATABASE IF NOT EXISTS 'eventsite' DEFAULT CHARACTER SET utf8 COLLATE
+utf8_unicode_ci; 
+USE 'eventsite';
+
 
 CREATE TABLE `admin` (
   `email` varchar(60) COLLATE utf8_unicode_ci NOT NULL
