@@ -287,6 +287,82 @@
                   <a href="logout.php" class="btn btn-primary">Logout</a>
                   </div>
           </div>
+
+
+
+<h3 style = "text-align: center">RSO's Currently Enrolled In</h3>
+<table id="EventTable" class="table table-striped table-hover table-bordered" cellspacing="0" width="100%">
+          <thead>
+           <tr>
+            <th>#</th>
+            <th>Name</th>
+           </tr>
+          </thead>
+          
+         
+          <div id="dom-target" >
+           <?php
+         
+
+          $dbhost = "localhost";
+          $dbuser = "web";
+          $dbpass = "localpassword";
+          $dbname = "eventsite";
+          $db = mysqli_connect($dbhost,$dbuser,$dbpass,$dbname) or die("cannot connect"); 
+          $email = $_SESSION['varemail'];
+       
+          mysqli_select_db($db, $dbname) or die("cannot select DB");
+
+
+          $query = "SELECT * FROM studentjoinsrso";
+
+          $result = mysqli_query($db, $query) or die(mysqli_error($db));
+
+          echo "<tbody>";
+          $school = 'Unknown';
+          while($row = mysqli_fetch_array($result)){   //Creates a loop to loop through results
+          
+          
+          
+        
+
+          if($row['email'] == $email) {
+          echo "<tr><td>" . $row['id'] . "</td><td>" . $row['rsoName'] . "</td></tr>"; 
+          } 
+           
+          }
+       
+          echo "</tbody>"; //Close the table in HTML
+
+          ?> 
+
+          </div>
+        
+
+
+
+          
+
+
+        </table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         </div>
       </div>
     </div>

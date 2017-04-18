@@ -16,7 +16,7 @@ $password =           $_POST ['password'];
 $confirm = $_POST['passwordConfirm'];
 $selectUser =           $_POST ['selectUser'];
 
-
+$success = 0;
 
 if($selectUser == "1"){
 	echo "You picked are student!!";
@@ -63,12 +63,21 @@ $result3 = mysqli_query($db, $querySuperAdmin);
 }
 
 else{
-	echo "passwords do not match";
+	$success = 1;
+	$message = "Passwords Do Not Match.\\nTry again.";
+                echo "<script type='text/javascript'>
+                alert('$message');
+                window.location.href = 'createFormBS.html';
+
+
+                </script>";
+         
 }
 
-
+if($success = 0){
  header("Location: loginBootstrap.html"); 
             die("Redirecting to: loginBootstrap.html");
+}
 Echo "Database Saved"; 
 mysqli_close($db);
 
