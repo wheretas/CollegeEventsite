@@ -142,7 +142,7 @@ function populateDatabase($id,$rsoname,$emails,$db,$autoInc){
 
 }
  
-(header("Location: RSORequest.html"); 
+header("Location: RSORequest.html"); 
             die("Redirecting to: RSORequest.html"); 
 
 	//close connection sql
