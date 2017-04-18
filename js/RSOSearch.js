@@ -7,37 +7,6 @@ $(function() {
 
     	//the name of the RSO 
     	var RSOName = cell.item(0).innerHTML;
-
-    	$.confirm({
-		    title: 'Do You Wish To Join "'+RSOName+'"?',
-		    content: 'Click CONFIRM to join this RSO and see its events in your event feed.',
-		    buttons: {
-		        confirm: function () {
-		        	//TODO add user to this RSO
-
-
-		        	$.ajax({
-				       type: "POST",
-				       url: "rsoUserAdd.php",
-				       data: "",
-				       dataType: "json",
-				       ,
-				    });
-
-
-
-
-
-
-
-
-		            $.alert('You have joined '+RSOName);
-		        },
-		        cancel: function () {
-		            $.alert('You did not join '+RSOName);
-		        }		       
-		    }
-		});
     });
 
     function schoolFromEmail(email) 
