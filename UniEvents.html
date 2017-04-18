@@ -135,7 +135,7 @@
           if(strrpos($emailEnd, 'gt') !== false) {
             $school = 'GT';
           }
-          echo "<tr><td>" . $row['eventID'] . "</td><td>" . $row['name'] . "</td><td>" . $row['date'] . "</td><td>" . $row['locationName'] .  "</td><td>" . $school . "</td></tr>";  
+          echo "<tr class='clickable-row' data-href='Event.html?key='><td>" . $row['eventID'] . "</td><td>" . $row['name'] . "</td><td>" . $row['date'] . "</td><td>" . $row['locationName'] .  "</td><td>" . $school . "</td></tr>";  
            
           }
        
