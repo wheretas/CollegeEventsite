@@ -27,7 +27,7 @@ if($selectUser == "1"){
 }
 
 
-if($password == $passwordConfirm){
+if($password == $confirm){
 		$query = 
 "INSERT INTO users
 (email,first_name,last_name,password)
