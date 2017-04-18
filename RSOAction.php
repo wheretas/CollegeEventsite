@@ -37,10 +37,11 @@
 	echo "$check";
 
 	//echo "merpipee";
+	$autoInc = mysqli_insert_id($db);
 
 	if($check ==1){
 		
-		populateDatabase($id,$rsoname,$splitEmails,$db);
+		populateDatabase($id,$rsoname,$splitEmails,$db,$autoInc);
 		echo "input in database";
 	}   
 
@@ -97,16 +98,19 @@ function validateInfo($rso,$domain,$id,$emails,$database,$schools){
 }
 
 
-function populateDatabase($id,$rsoname,$emails,$db){
+function populateDatabase($id,$rsoname,$emails,$db,$autoInc){
+
+
 
 		//populate db from rso request
-	foreach ($emails as $em) {
-		$query1 = "INSERT INTO studentjoinsrso
-							(email)
-						values
-							('$em')";
-		$res = mysqli_query($db, $query1);
-	}
+//$autoInc = mysqli_insert_id($db);
+//$query1 = 
+//"INSERT INTO `studentjoinsrso` (`id`,`rsoName`, `email`) VALUES ('$autoInc' ,'$rsoname', 'jpattee@ucf.edu');";
+		//$res = mysqli_query($db, $query1);
+
+
+
+	
 
 	$query3 = 
 		"INSERT INTO admin
@@ -123,10 +127,23 @@ function populateDatabase($id,$rsoname,$emails,$db){
 	$result3 = mysqli_query($db, $query3);
 	$result4 = mysqli_query($db, $query4);
 
+
+
+	foreach ($emails as $em) {
+		
+		
+		echo $autoInc;
+		$query1 = 
+		"INSERT INTO `studentjoinsrso` (`id`,`rsoName`, `email`) VALUES ('$autoInc' ,'$rsoname', '$em');";
+		$res = mysqli_query($db, $query1);
+		$autoInc++;
+	}
+
+
 }
  
-header("Location: RSORequest.html"); 
-            die("Redirecting to: RSORequest.html");
+(header("Location: RSORequest.html"); 
+            die("Redirecting to: RSORequest.html"); 
 
 	//close connection sql
 	mysqli_close($db);
