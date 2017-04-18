@@ -106,7 +106,7 @@
             <th>#</th>
             <th>Name</th>
             <th>Date</th>
-            <th>RSO</th>
+            <th>Location</th>
             <th>University</th>
            </tr>
           </thead>
@@ -131,57 +131,32 @@
           $result = mysqli_query($db, $query) or die(mysqli_error($db));
 
           echo "<tbody>";
+          $school = 'Unknown';
           while($row = mysqli_fetch_array($result)){   //Creates a loop to loop through results
           $helllo = $row['email']; 
-          echo "<tr><td>" . $row['eventID'] . "</td><td>" . $row['name'] . "</td><td>" . $row['date'] . "</td><td>" . $row['locationName'] .  "</td> <td id='demo'></td></tr>";  
+          $emailEnd = substr($helllo, strrpos($helllo, '@')+1, strlen($helllo));
+          if(strrpos($emailEnd, 'ucf') !== false) {
+            $school = 'UCF';
+          }
+          if(strrpos($emailEnd, 'uf') !== false) {
+            $school = 'UF';
+          }
+          if(strrpos($emailEnd, 'fsu') !== false) {
+            $school = 'FSU';
+          }
+          if(strrpos($emailEnd, 'gt') !== false) {
+            $school = 'GT';
+          }
+          echo "<tr><td>" . $row['eventID'] . "</td><td>" . $row['name'] . "</td><td>" . $row['date'] . "</td><td>" . $row['locationName'] .  "</td><td>" . $school . "</td></tr>";  
            
           }
        
-
           echo "</tbody>"; //Close the table in HTML
-
-          
-        
-          
-           
 
           ?> 
 
           </div>
-         
-
-         <script type="text/javascript">
-      
-             
-              var js_variable  = '<?php echo $helllo;?>';
-             
-            var x = schoolFromEmail(js_variable); 
-
-            function schoolFromEmail(email) 
-              {
-                var address = email.toString().substring(email.indexOf('@')+1, email.length);
-                if(address.includes("ucf"))
-                {
-                 
-                  return 'UCF';
-                }
-                if(address.includes("uf"))
-                  return 'UF';
-                if(address.includes("fsu"))
-                  return 'FSU';
-                if(address.includes("gt"))
-                  return 'GT';
-                else
-                  return 'N/A';
-
-              }    
-
-               document.getElementById("demo")[0].innerHTML += x;
-            document.getElementById("demo")[1].innerHTML += x;
-            document.getElementById("demo")[2].innerHTML += x;
-           
-
-            </script>
+        
 
 
 
