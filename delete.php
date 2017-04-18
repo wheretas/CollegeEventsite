@@ -15,16 +15,18 @@ $select= $_GET['del_id'];
 
 
 
-echo $select;
+//echo $select;
 
 
 
 
 $sql = "DELETE FROM studentcomments WHERE id = $select";
 
+$key = "SELECT eventID FROM admincreatesevent WHERE name = $del_id";
+
 $query=mysqli_query($db, $sql);
 
-header("Location: index.html"); 
+header("Refresh:0; url=Event.html?key=$key"); 
             die("Redirecting to: index.html");
 
 ?>
