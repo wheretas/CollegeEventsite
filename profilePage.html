@@ -20,16 +20,6 @@
    <script src="js/dataTables.bootstrap4.min.js"></script>                                                
    <script src="js/EventRequest.js"></script>                             
    <script src="https://netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>    
-
-
-
-  <script language="javascript" src="https://maps.googleapis.com/maps/api/js?v=3"></script>
-
-
-
-
-
-    <script src="js/locationpicker.jquery.min.js"></script>
     <script src="js/navBar.js"></script>
     <script scrc="js/RSORequest.js"></script>
 
@@ -71,7 +61,7 @@
       <div class="row">
       <div class="col-md-5  toppad  pull-right col-md-offset-3 ">
 
-             <script src="/js/navBar.js" type="text/javascript">document.write(getUserRole().val());</script> 
+             <!--<script src="/js/navBar.js" type="text/javascript">document.write(getUserRole().val());</script> -->
        <br>
         <?php
         echo "Today is " . date("Y/m/d") . "<br>";
@@ -127,16 +117,35 @@
                     <tbody>
                       <tr>
                         <td>Account Type:</td>
-                        <td>
-                        <script src="/js/navBar.js" type="text/javascript">document.write(getUserRole().val());</script> 
-                         
-                         
+                        
+                          <?php 
+                          ini_set('display_errors', 1);
+                          ini_set('display_startup_errors', 1);
+                          $email = $_SESSION['varemail'];
+
+                          $dbhost = "localhost";
+                          $dbuser = "web";
+                          $dbpass = "localpassword";
+                          $dbname = "eventsite";
+                          $db = mysqli_connect($dbhost,$dbuser,$dbpass,$dbname) or die("cannot connect"); 
+                          mysqli_select_db($db, $dbname) or die("cannot select DB");
+                          
+                          $roleNum = $_SESSION['varname'];
+                          $role = 'Unknown';
+                          if($roleNum == '1')
+                            $role = 'Student';
+                          if($roleNum == '2')
+                            $role = 'Admin';
+                          if($roleNum == '3')
+                            $role = 'Super Admin';  
+                          echo "<td>" . $role . "</td>";
+                          
                     
-                           
+                           ?>
 
 
 
-                        </td>   <!-- use getRole -->
+                          <!-- use getRole -->
                       </tr>
 
 
@@ -268,7 +277,6 @@
             </div>
                  
              <div style = "text-align: center">
-                  <a href="#" class="btn btn-primary">Edit Profile</a>
                   <a href="logout.php" class="btn btn-primary">Logout</a>
                   </div>
           </div>
