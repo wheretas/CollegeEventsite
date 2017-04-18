@@ -111,6 +111,15 @@
   <div id="map"></div>
   <script>
       var map;
+      var markers = [];
+      var mapEventIDs = [];
+      var i=0;
+      var currLoc = [];
+      var currLat;
+      var currLong;
+      var URL='Event.html?key=';
+      var currKey='';
+      var currURL = '';
       function initMap() {
         map = new google.maps.Map(document.getElementById('map'), {
           zoom: 15,
@@ -118,12 +127,55 @@
           mapTypeId: 'terrain'
         });
 
+      $.post(
+        "getMapEventIDs.php", 
+        function(data) {
+        mapEventIDs = data;
+        for(var i=0;i<mapEventIDs.length;i++) {
+          $.post(
+            "getEventLoc.php",
+            {id: mapEventIDs[i]},
+            function(data, success) {
+              currLoc = data;
+              currLat = currLoc[0];
+              currLong = currLoc[1];
+              currKey = currLoc[2];
+              currURL= URL.concat(currKey);
+              var newMarkerLoc = new google.maps.LatLng(currLat,currLong);
+              markers.push(new google.maps.Marker({
+              map: map,
+              position: newMarkerLoc,
+              title: mapEventIDs[i],
+              url: currURL
+            }));
+            google.maps.event.addListener(markers[markers.length -1], 'click', function() {
+              console.log('here');
+              window.location.href = this.url;
+            });
+            }, 'json'
+            );
+        }
+        /*if(numMapEvents!=0) {
+          for(var i=0; i<numMapEvents; i++)
+          {
+
+            var newMarkerLoc = new google.maps.LatLng(28.60257103063807,-81.2001131225586);
+            markers.push(new google.maps.Marker({
+              map: map,
+              position: newMarkerLoc,
+              title: 'myloc'
+            }));
+          }
+        }*/
+        },'json'
+      );      
+      
         
-        var script = document.createElement('script');
-        document.getElementsByTagName('head')[0].appendChild(script);
+        //var script = document.createElement('script');
+        //document.getElementsByTagName('head')[0].appendChild(script);
       }
 
-      window.eqfeed_callback = function(results) {
+      /*window.eqfeed_callback = function(results) {
         for (var i = 0; i < results.features.length; i++) {
           var coords = results.features[i].geometry.coordinates;
           var latLng = new google.maps.LatLng(coords[1],coords[0]);
@@ -132,7 +184,7 @@
             map: map
           });
         }
-      }
+      }*/
     </script>
     
     <script async defer
