@@ -36,7 +36,7 @@ if($password == $confirm){
 
 			('$email','$first_name','$last_name','$password')";
 
-
+$result = mysqli_query($db, $query);
 if($selectUser == "1"){
 	$queryStudent = 
 		"INSERT INTO student
@@ -63,8 +63,7 @@ if($selectUser == "2"){
 		$sucess = true;
 }
 
-$result = mysqli_query($db, $query);
-	
+
 
 }
 
