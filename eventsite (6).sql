@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 15, 2017 at 04:47 AM
+-- Generation Time: Apr 18, 2017 at 06:41 PM
 -- Server version: 10.1.21-MariaDB
 -- PHP Version: 7.1.1
 
@@ -19,33 +19,23 @@ SET time_zone = "+00:00";
 --
 -- Database: `eventsite`
 --
-CREATE DATABASE IF NOT EXISTS `eventsite` DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
-USE `eventsite`;
 
 -- --------------------------------------------------------
 
 --
 -- Table structure for table `admin`
 --
--- Creation: Apr 04, 2017 at 09:00 PM
---
 
-DROP TABLE IF EXISTS `admin`;
 CREATE TABLE `admin` (
   `email` varchar(60) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
--- RELATIONS FOR TABLE `admin`:
---   `email`
---       `users` -> `email`
---
 
 --
 -- Dumping data for table `admin`
 --
 
 INSERT INTO `admin` (`email`) VALUES
+('aober@ucf.edu'),
 ('blackmamba@ucf.edu'),
 ('cevins@ucf.edu'),
 ('leo10@ucf.edu');
@@ -55,77 +45,55 @@ INSERT INTO `admin` (`email`) VALUES
 --
 -- Table structure for table `adminaffiliated`
 --
--- Creation: Apr 04, 2017 at 09:00 PM
---
 
-DROP TABLE IF EXISTS `adminaffiliated`;
 CREATE TABLE `adminaffiliated` (
   `email` varchar(60) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
--- RELATIONS FOR TABLE `adminaffiliated`:
---   `email`
---       `admin` -> `email`
---
 
 -- --------------------------------------------------------
 
 --
 -- Table structure for table `admincreateprivate`
 --
--- Creation: Apr 04, 2017 at 09:00 PM
---
 
-DROP TABLE IF EXISTS `admincreateprivate`;
 CREATE TABLE `admincreateprivate` (
   `name` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
   `email` varchar(60) COLLATE utf8_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- RELATIONS FOR TABLE `admincreateprivate`:
---   `name`
---       `admincreatesevent` -> `name`
---   `email`
---       `admin` -> `email`
---   `email`
---       `superadmin` -> `email`
+-- Dumping data for table `admincreateprivate`
 --
+
+INSERT INTO `admincreateprivate` (`name`, `email`) VALUES
+('Engineering Convention', 'leo10@ucf.edu'),
+('Rugby Game Meeting', 'leo10@ucf.edu');
 
 -- --------------------------------------------------------
 
 --
 -- Table structure for table `admincreatepublic`
 --
--- Creation: Apr 04, 2017 at 09:00 PM
---
 
-DROP TABLE IF EXISTS `admincreatepublic`;
 CREATE TABLE `admincreatepublic` (
   `name` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
   `email` varchar(60) COLLATE utf8_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- RELATIONS FOR TABLE `admincreatepublic`:
---   `name`
---       `admincreatesevent` -> `name`
---   `email`
---       `admin` -> `email`
---   `email`
---       `superadmin` -> `email`
+-- Dumping data for table `admincreatepublic`
 --
+
+INSERT INTO `admincreatepublic` (`name`, `email`) VALUES
+('dodgeball tourny', 'leo10@ucf.edu'),
+('Universal Knights Meeting', 'leo10@ucf.edu');
 
 -- --------------------------------------------------------
 
 --
 -- Table structure for table `admincreatesevent`
 --
--- Creation: Apr 14, 2017 at 11:04 PM
---
 
-DROP TABLE IF EXISTS `admincreatesevent`;
 CREATE TABLE `admincreatesevent` (
   `name` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
   `email` varchar(60) COLLATE utf8_unicode_ci DEFAULT NULL,
@@ -141,29 +109,25 @@ CREATE TABLE `admincreatesevent` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci ROW_FORMAT=COMPACT;
 
 --
--- RELATIONS FOR TABLE `admincreatesevent`:
---   `email`
---       `admin` -> `email`
---   `eventID`
---       `eventlocation` -> `eventID`
---
-
---
 -- Dumping data for table `admincreatesevent`
 --
 
 INSERT INTO `admincreatesevent` (`name`, `email`, `category`, `type`, `date`, `time`, `contactEmail`, `contactPhone`, `description`, `locationName`, `eventID`) VALUES
-('fafa', 'blackmamba@ucf.edu', 'Fundraiser', 'Private', NULL, NULL, 'leo10@ucf.edu', '9549931325', 'fafaf', 'faf', 5);
+('dodgeball tourny', 'leo10@ucf.edu', 'Sports', 'Public', '2017-12-03', '14:30:00', 'leo10@ucf.edu', '123-456-7894', 'do u dodge some balls?', 'Gym', 22),
+('Engineering Convention', 'leo10@ucf.edu', 'Sports', 'Private', '2017-07-21', '12:00:00', 'leo10@ucf.edu', '789-456-4562', 'need a job? come and network!', 'CFE Arena', 16),
+('Kendrick Lamar Concert', 'leo10@ucf.edu', 'Other', 'Public', '2017-11-14', '21:40:00', 'blackmamba@ucf.edu', '789-456-1341', 'Rapper Kendrick Lamar will be on campus for his yearly tour!', 'CFE Area', 10),
+('Resume Critique', 'leo10@ucf.edu', 'Other', 'Public', '2017-07-23', NULL, 'leo10@ucf.edu', '456-789-4132', 'Come and get your resume checked!', 'Library', 7),
+('Rugby Game Meeting', 'leo10@ucf.edu', 'Sports', 'Private', '2017-04-30', '09:00:00', 'leo10@ucf.edu', '741-852-8529', 'Review last games tapes', 'Rec and Wellness Center', 15),
+('Soccer Clinic', 'leo10@ucf.edu', 'Sports', 'Public', '2017-08-24', NULL, 'leo10@ucf.edu', '789-456-4561', 'Come and practice with the FC Barcelona squad!', 'IM Fields UCF', 8),
+('Twitter Speaker ', 'leo10@ucf.edu', 'Tech Talks', 'Public', NULL, NULL, 'leo10@ucf.edu', '461-465-4612', 'Twitter CEO will be on campus talking about opportunities', 'Harris Building', 6),
+('Universal Knights Meeting', 'leo10@ucf.edu', 'Other', 'Public', '2017-05-21', '17:00:00', 'leo10@ucf.edu', '963-852-8527', 'Discuss the upcoming field trip!', 'Study Union', 13);
 
 -- --------------------------------------------------------
 
 --
 -- Table structure for table `eventlocation`
 --
--- Creation: Apr 14, 2017 at 10:47 PM
---
 
-DROP TABLE IF EXISTS `eventlocation`;
 CREATE TABLE `eventlocation` (
   `eventID` int(11) NOT NULL,
   `locationName` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
@@ -172,45 +136,44 @@ CREATE TABLE `eventlocation` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- RELATIONS FOR TABLE `eventlocation`:
---
-
---
 -- Dumping data for table `eventlocation`
 --
 
 INSERT INTO `eventlocation` (`eventID`, `locationName`, `latitude`, `longitude`) VALUES
-(1, 'jungle', 1.000000, 2.000000),
-(2, 'faf', 1.000000, 2.000000),
-(3, 'faf', 1.000000, 2.000000),
-(4, 'faf', 1.000000, 2.000000),
-(5, 'faf', 1.000000, 2.000000);
+(6, 'Harris Building', 20.000000, -81.000000),
+(7, 'Library', 31.000000, -81.000000),
+(8, 'IM Fields UCF', 26.000000, -81.000000),
+(9, '', 0.000000, 0.000000),
+(10, 'CFE Area', 64.000000, -81.000000),
+(11, 'Student Union', 24.000000, -81.000000),
+(12, 'Student Union', 24.000000, -81.000000),
+(13, 'Study Union', 21.000000, -81.000000),
+(15, 'Rec and Wellness Center', 21.000000, -81.000000),
+(16, 'CFE Arena', 28.604944, -81.200348),
+(17, 'CFE Arena', 28.602571, -81.200111),
+(18, 'gym', 28.602571, -81.200111),
+(19, 'dad', 28.602571, -81.200111),
+(20, 'adad', 28.602571, -81.200111),
+(21, 'adad', 28.602571, -81.200111),
+(22, 'Gym', 28.602571, -81.200111);
 
 -- --------------------------------------------------------
 
 --
 -- Table structure for table `rso`
 --
--- Creation: Apr 04, 2017 at 09:00 PM
---
 
-DROP TABLE IF EXISTS `rso`;
 CREATE TABLE `rso` (
   `rsoNAME` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
   `email` varchar(60) COLLATE utf8_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- RELATIONS FOR TABLE `rso`:
---   `email`
---       `admin` -> `email`
---
-
---
 -- Dumping data for table `rso`
 --
 
 INSERT INTO `rso` (`rsoNAME`, `email`) VALUES
+('ChickFilA Club', 'aober@ucf.edu'),
 ('Christmas Charity Event', 'blackmamba@ucf.edu'),
 ('Culture Parade', 'cevins@ucf.edu'),
 ('Cancer Fundraiser 2k17', 'leo10@ucf.edu'),
@@ -221,38 +184,20 @@ INSERT INTO `rso` (`rsoNAME`, `email`) VALUES
 --
 -- Table structure for table `rsocreatedrsoevent`
 --
--- Creation: Apr 04, 2017 at 09:00 PM
---
 
-DROP TABLE IF EXISTS `rsocreatedrsoevent`;
 CREATE TABLE `rsocreatedrsoevent` (
   `rsoName` varchar(30) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
--- RELATIONS FOR TABLE `rsocreatedrsoevent`:
---   `rsoName`
---       `rso` -> `rsoNAME`
---
 
 -- --------------------------------------------------------
 
 --
 -- Table structure for table `student`
 --
--- Creation: Apr 04, 2017 at 09:00 PM
---
 
-DROP TABLE IF EXISTS `student`;
 CREATE TABLE `student` (
   `email` varchar(60) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
--- RELATIONS FOR TABLE `student`:
---   `email`
---       `users` -> `email`
---
 
 --
 -- Dumping data for table `student`
@@ -266,88 +211,69 @@ INSERT INTO `student` (`email`) VALUES
 ('jpattee@ucf.edu'),
 ('Kriskross@ucf.edu'),
 ('lbog@ucf.edu'),
-('leo10@ucf.edu');
+('leo10@ucf.edu'),
+('lol@ucf.edu');
 
 -- --------------------------------------------------------
 
 --
 -- Table structure for table `studentcomments`
 --
--- Creation: Apr 04, 2017 at 09:00 PM
---
 
-DROP TABLE IF EXISTS `studentcomments`;
 CREATE TABLE `studentcomments` (
+  `id` int(30) NOT NULL,
   `email` varchar(60) COLLATE utf8_unicode_ci NOT NULL,
-  `name` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
-  `comment` varchar(200) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `rating` enum('1','2','3','4','5') COLLATE utf8_unicode_ci DEFAULT NULL
+  `comment` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
+  `rating` enum('1','2','3','4','5') COLLATE utf8_unicode_ci NOT NULL,
+  `name` varchar(30) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- RELATIONS FOR TABLE `studentcomments`:
---   `email`
---       `student` -> `email`
---   `name`
---       `admincreatesevent` -> `name`
+-- Dumping data for table `studentcomments`
 --
+
+INSERT INTO `studentcomments` (`id`, `email`, `comment`, `rating`, `name`) VALUES
+(13, 'aober@ucf.edu', 'qfsf', '4', 'dodgeball tourny');
 
 -- --------------------------------------------------------
 
 --
 -- Table structure for table `studentjoinsrso`
 --
--- Creation: Apr 04, 2017 at 09:00 PM
---
 
-DROP TABLE IF EXISTS `studentjoinsrso`;
 CREATE TABLE `studentjoinsrso` (
-  `email` varchar(60) COLLATE utf8_unicode_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `id` int(30) NOT NULL,
+  `email` varchar(60) COLLATE utf8_unicode_ci NOT NULL,
+  `rsoName` varchar(30) COLLATE utf8_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci ROW_FORMAT=COMPACT;
 
 --
--- RELATIONS FOR TABLE `studentjoinsrso`:
---   `email`
---       `student` -> `email`
+-- Dumping data for table `studentjoinsrso`
 --
+
+INSERT INTO `studentjoinsrso` (`id`, `email`, `rsoName`) VALUES
+(11, 'lol@ucf.edu', 'Cancer Fundraiser 2k17'),
+(14, 'lol@ucf.edu', 'Christmas Charity Event');
 
 -- --------------------------------------------------------
 
 --
 -- Table structure for table `studentmakesrso`
 --
--- Creation: Apr 04, 2017 at 09:00 PM
---
 
-DROP TABLE IF EXISTS `studentmakesrso`;
 CREATE TABLE `studentmakesrso` (
   `email` varchar(60) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
--- RELATIONS FOR TABLE `studentmakesrso`:
---   `email`
---       `student` -> `email`
---
 
 -- --------------------------------------------------------
 
 --
 -- Table structure for table `superadmin`
 --
--- Creation: Apr 04, 2017 at 09:00 PM
---
 
-DROP TABLE IF EXISTS `superadmin`;
 CREATE TABLE `superadmin` (
   `email` varchar(60) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
--- RELATIONS FOR TABLE `superadmin`:
---   `email`
---       `users` -> `email`
---
 
 --
 -- Dumping data for table `superadmin`
@@ -365,10 +291,7 @@ INSERT INTO `superadmin` (`email`) VALUES
 --
 -- Table structure for table `superadmincreate`
 --
--- Creation: Apr 04, 2017 at 09:00 PM
---
 
-DROP TABLE IF EXISTS `superadmincreate`;
 CREATE TABLE `superadmincreate` (
   `name` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
   `location` varchar(30) COLLATE utf8_unicode_ci DEFAULT NULL,
@@ -378,20 +301,19 @@ CREATE TABLE `superadmincreate` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- RELATIONS FOR TABLE `superadmincreate`:
---   `email`
---       `superadmin` -> `email`
+-- Dumping data for table `superadmincreate`
 --
+
+INSERT INTO `superadmincreate` (`name`, `location`, `numStudents`, `type`, `email`) VALUES
+('University of Central Florida', 'Orlando, FL', 60000, 'Public', 'mcohrs@ucf.edu'),
+('University of Florida', 'Gainsville, FL', 50000, 'Public', 'mcohrs@ucf.edu');
 
 -- --------------------------------------------------------
 
 --
 -- Table structure for table `users`
 --
--- Creation: Apr 04, 2017 at 09:00 PM
---
 
-DROP TABLE IF EXISTS `users`;
 CREATE TABLE `users` (
   `id` int(11) DEFAULT NULL,
   `first_name` varchar(30) COLLATE utf8_unicode_ci DEFAULT NULL,
@@ -399,10 +321,6 @@ CREATE TABLE `users` (
   `email` varchar(60) COLLATE utf8_unicode_ci NOT NULL,
   `password` varchar(30) COLLATE utf8_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
--- RELATIONS FOR TABLE `users`:
---
 
 --
 -- Dumping data for table `users`
@@ -420,6 +338,7 @@ INSERT INTO `users` (`id`, `first_name`, `last_name`, `email`, `password`) VALUE
 (NULL, 'Kristofer', 'Lover', 'Kriskross@ucf.edu', 'password4'),
 (NULL, 'Lorette ', 'Boggess', 'lbog@ucf.edu', 'password3'),
 (NULL, 'Lionel', 'Messi', 'leo10@ucf.edu', 'soccer'),
+(NULL, 'Laura', 'Laugh', 'lol@ucf.edu', 'lol'),
 (NULL, 'Marlon', 'Cohrs', 'mcohrs@ucf.edu', 'passcode2'),
 (NULL, 'Marielle', 'Roush', 'mroush@ucf.edu', 'passcode1'),
 (NULL, 'Steve', 'Birmingham', 'sbirm@ucf.edu', 'passcode3');
@@ -473,7 +392,9 @@ ALTER TABLE `eventlocation`
 --
 ALTER TABLE `rso`
   ADD PRIMARY KEY (`rsoNAME`),
-  ADD KEY `email` (`email`);
+  ADD KEY `email` (`email`),
+  ADD KEY `rsoNAME` (`rsoNAME`),
+  ADD KEY `rsoNAME_2` (`rsoNAME`);
 
 --
 -- Indexes for table `rsocreatedrsoevent`
@@ -491,14 +412,15 @@ ALTER TABLE `student`
 -- Indexes for table `studentcomments`
 --
 ALTER TABLE `studentcomments`
-  ADD PRIMARY KEY (`email`,`name`),
-  ADD KEY `name` (`name`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `studentjoinsrso`
 --
 ALTER TABLE `studentjoinsrso`
-  ADD PRIMARY KEY (`email`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `studentjoinsrso_ibfk_1` (`email`),
+  ADD KEY `studentjoinsrso_ibfk_2` (`rsoName`);
 
 --
 -- Indexes for table `studentmakesrso`
@@ -533,7 +455,17 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `eventlocation`
 --
 ALTER TABLE `eventlocation`
-  MODIFY `eventID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `eventID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+--
+-- AUTO_INCREMENT for table `studentcomments`
+--
+ALTER TABLE `studentcomments`
+  MODIFY `id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+--
+-- AUTO_INCREMENT for table `studentjoinsrso`
+--
+ALTER TABLE `studentjoinsrso`
+  MODIFY `id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 --
 -- Constraints for dumped tables
 --
@@ -555,16 +487,14 @@ ALTER TABLE `adminaffiliated`
 --
 ALTER TABLE `admincreateprivate`
   ADD CONSTRAINT `admincreateprivate_ibfk_1` FOREIGN KEY (`name`) REFERENCES `admincreatesevent` (`name`),
-  ADD CONSTRAINT `admincreateprivate_ibfk_2` FOREIGN KEY (`email`) REFERENCES `admin` (`email`),
-  ADD CONSTRAINT `admincreateprivate_ibfk_3` FOREIGN KEY (`email`) REFERENCES `superadmin` (`email`);
+  ADD CONSTRAINT `admincreateprivate_ibfk_2` FOREIGN KEY (`email`) REFERENCES `admin` (`email`);
 
 --
 -- Constraints for table `admincreatepublic`
 --
 ALTER TABLE `admincreatepublic`
   ADD CONSTRAINT `admincreatepublic_ibfk_1` FOREIGN KEY (`name`) REFERENCES `admincreatesevent` (`name`),
-  ADD CONSTRAINT `admincreatepublic_ibfk_2` FOREIGN KEY (`email`) REFERENCES `admin` (`email`),
-  ADD CONSTRAINT `admincreatepublic_ibfk_3` FOREIGN KEY (`email`) REFERENCES `superadmin` (`email`);
+  ADD CONSTRAINT `admincreatepublic_ibfk_2` FOREIGN KEY (`email`) REFERENCES `admin` (`email`);
 
 --
 -- Constraints for table `admincreatesevent`
@@ -577,7 +507,7 @@ ALTER TABLE `admincreatesevent`
 -- Constraints for table `rso`
 --
 ALTER TABLE `rso`
-  ADD CONSTRAINT `rso_ibfk_1` FOREIGN KEY (`email`) REFERENCES `admin` (`email`);
+  ADD CONSTRAINT `rso_ibfk_1` FOREIGN KEY (`email`) REFERENCES `admin` (`email`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `rsocreatedrsoevent`
@@ -592,17 +522,11 @@ ALTER TABLE `student`
   ADD CONSTRAINT `student_ibfk_1` FOREIGN KEY (`email`) REFERENCES `users` (`email`);
 
 --
--- Constraints for table `studentcomments`
---
-ALTER TABLE `studentcomments`
-  ADD CONSTRAINT `studentcomments_ibfk_1` FOREIGN KEY (`email`) REFERENCES `student` (`email`),
-  ADD CONSTRAINT `studentcomments_ibfk_2` FOREIGN KEY (`name`) REFERENCES `admincreatesevent` (`name`);
-
---
 -- Constraints for table `studentjoinsrso`
 --
 ALTER TABLE `studentjoinsrso`
-  ADD CONSTRAINT `studentjoinsrso_ibfk_1` FOREIGN KEY (`email`) REFERENCES `student` (`email`);
+  ADD CONSTRAINT `studentjoinsrso_ibfk_1` FOREIGN KEY (`email`) REFERENCES `student` (`email`),
+  ADD CONSTRAINT `studentjoinsrso_ibfk_2` FOREIGN KEY (`rsoName`) REFERENCES `rso` (`rsoNAME`);
 
 --
 -- Constraints for table `studentmakesrso`

@@ -11,3 +11,19 @@ Steps to have db server up:
 7) click the "User Accounts" button on the top bar
 8) Create new account. named "web" with password "localpassword" (check off the DATA box ONLY)
 9) AND ENJOY :D
+
+
+
+
+get php inside of html
+
+
+at the end of apache/conf file 
+<IfModule mod_mime.c>
+AddType application/x-httpd-php .php
+AddType application/x-httpd-php .phtml
+AddType application/x-httpd-php .php3
+AddType application/x-httpd-php .php4
+AddType application/x-httpd-php .html
+AddType application/x-httpd-php-source .phps
+</IfModule>

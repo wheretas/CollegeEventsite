@@ -89,6 +89,7 @@
             <th>University</th>
            </tr>
           </thead>
+
           <?php
           
 
@@ -125,7 +126,7 @@
           }
 
           //Works fine but missing the email to javascript function
-          echo "<tr class='clickable-row'><td>" . $row['rsoNAME'] .  "</td><td>" . $school . "</td></tr>";  
+          echo "<tr><td>" . $row['rsoNAME'] .  "</td><td>" . $school . "</td></tr>";  
           }
 
           echo "</tbody>"; //Close the table in HTML
@@ -136,6 +137,99 @@
 
           ?>
         </table>
+
+
+
+
+
+
+
+
+<h2>Join RSO</h2>
+
+
+       
+<div class="floatdiv">
+ <form action="/rsoUserAdd.php" method="post">
+
+ 
+        <select name="rsonames" id="rsonames" >
+
+
+                      <?php
+                        
+
+                        $dbhost = "localhost";
+                        $dbuser = "web";
+                        $dbpass = "localpassword";
+                        $dbname = "eventsite";
+                        $db = mysqli_connect($dbhost,$dbuser,$dbpass,$dbname) or die("cannot connect"); 
+
+                       
+
+                        mysqli_select_db($db, $dbname) or die("cannot select DB");
+
+
+                         $query3 = 
+                          "SELECT rsoName FROM rso";
+                          $result2 = mysqli_query($db, $query3);
+
+                        $result = mysqli_query($db, $query3) or die(mysqli_error($db));
+
+                 
+                        while($row = mysqli_fetch_array($result)){ 
+
+
+
+                        ?>
+
+                          
+
+
+                
+                   <option><?php echo $row['rsoName']; ?></option>
+                       
+                   
+
+
+
+                      <?php
+                        }
+                        ?>
+
+
+
+
+
+
+
+
+</select>
+
+        <div class = "floatdiv">
+                  <button type="submit" name="rsojoin" value="rsojoin" class="form-control btn btn-success"">Join!</button>
+                
+                  </div>
+
+
+                  </form>
+   </div>
+  <style type="text/css">
+    #main
+    {
+    position:relative;
+        width:400px;
+    }
+
+    .floatdiv
+    {
+    float:left;
+        width=120px
+        display: inline-block;
+  padding: 5px;
+
+    }
+</style>
         
       </main>
     </div>
