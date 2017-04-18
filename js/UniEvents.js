@@ -1,5 +1,7 @@
 $(function() {
-    $('#EventTable').DataTable();
+    $('#EventTable').DataTable( {
+    	"order": [[ 4, "desc" ]]
+    });
 
     $('.clickable-row').click(function() {
     	var table = document.getElementById('EventTable');
