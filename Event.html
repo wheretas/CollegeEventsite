@@ -15,11 +15,9 @@ $db = mysqli_connect($dbhost,$dbuser,$dbpass,$dbname) or die("cannot connect");
 
 $key = $_GET['key']; 
 
+$_SESSION['varkey'] = $key;
 
-
-
-
-
+$varcomm =  $_SESSION['varcomm'] ;
 
 mysqli_select_db($db, $dbname) or die("cannot select DB");
 
@@ -43,6 +41,19 @@ mysqli_select_db($db, $dbname) or die("cannot select DB");
         $result2 = mysqli_query($db, $query2);
 
         $row2 = mysqli_fetch_array($result2);
+
+        $name = $row['name'];
+
+
+         $query3 = 
+        "SELECT * FROM studentcomments
+        WHERE eventID = '".$key."'";
+        $result2 = mysqli_query($db, $query2);
+      
+		
+
+
+
          
          
 
@@ -112,7 +123,7 @@ mysqli_select_db($db, $dbname) or die("cannot select DB");
 		  <a class="nav-link" href="index.html">Home</a>
 		 </li>
 		 <li class="nav-item">
-		  <a class="nav-link" href="#">Profile</a>
+		  <a class="nav-link" href="profilePage.html">Profile</a>
 		 </li>
 		 <li class="nav-item">
 		  <a class="nav-link" href="#">Help</a>
@@ -241,8 +252,10 @@ mysqli_select_db($db, $dbname) or die("cannot select DB");
 				    </div>
 				  </div>
 				</div>
+				
 				<div class="col-md-5">
 				  <div class="panel panel-default">
+				  <form id="feedback form" method="POST" action="/eventComment.php">
 				    <div class="panel-heading">User Feedback</div>
 				    <div class="panel-body">
 				    	<div id="commentErrorAlert" class="hide alert alert-danger">
@@ -256,7 +269,7 @@ mysqli_select_db($db, $dbname) or die("cannot select DB");
 								<div class="panel panel-default">
 									<div class="panel-heading">
 										<div class="row">
-											<strong id="userName" style="position:relative; left:15px;">myUsername</strong>
+											<strong id="userName" style="position:relative; left:15px;"><?php echo $email;?></strong>
 											<div class="col-md-3" style="position:absolute; left:450px;">
 								    			<div class="form-group pull-right">
 								    				<button id="edit" class="form-control btn btn-success">Edit</button>
@@ -264,7 +277,7 @@ mysqli_select_db($db, $dbname) or die("cannot select DB");
 								    		</div>
 								    		<div class="col-md-3" style="position:absolute; left:450px;">
 								    			<div class="form-group pull-right">
-								    				<button id="submit" class="form-control btn btn-primary">Submit</button>
+								    				<button type= "submit" id="submit" class="form-control btn btn-primary">Submit</button>
 								    			</div>
 								    		</div>							
 										</div>
@@ -272,7 +285,7 @@ mysqli_select_db($db, $dbname) or die("cannot select DB");
 											<form class="form-inline">
 												<div class="form-group col-md-5">
 													<label class="control-label"> Rating: </label>
-													<select id="rating" class="form-control" required="">
+													<select id="rating" name="rating" class="form-control" required="">
 									    				<option value="1" selected>1</option>
 									    				<option value="2">2</option>
 									    				<option value="3">3</option>
@@ -283,45 +296,117 @@ mysqli_select_db($db, $dbname) or die("cannot select DB");
 											</form>
 											<div class="col-md-3" style="position:absolute; left:450px; top:40px">
 								    			<div class="form-group pull-right">
-								    				<button id="delete" class="form-control btn btn-danger">Delete</button>
+								    				<button type ="button" id="delete" class="form-control btn btn-danger">Delete</button>
 								    			</div>
 								    		</div>
 								    		<div class="col-md-3" style="position:absolute; left:450px; top:40px">
 								    			<div class="form-group pull-right">
-								    				<button id="cancel" class="form-control btn btn-danger">Cancel</button>
+								    				<button type ="button" id="cancel" class="form-control btn btn-danger">Cancel</button>
 								    			</div>
 								    		</div>
 										</div>
 									</div>
 									<div class="panel-body">
-										<textarea id="comment" class="form-control" rows="3" required="">this is some comment</textarea>
+										<textarea id="comment" name="comment" class="form-control" rows="3" placeholder="Insert Comment Here" required=""></textarea>
 									</div><!-- /panel-body -->
 								</div><!-- /panel panel-default -->
 							</div><!-- /col-sm-5 -->
 						</div><!-- /row -->
 						<div class="row">
 							<div class="col-sm-12">
+
+
+								 
+
+
+									
+							          <?php
+							          
+
+							          $dbhost = "localhost";
+							          $dbuser = "web";
+							          $dbpass = "localpassword";
+							          $dbname = "eventsite";
+							          $db = mysqli_connect($dbhost,$dbuser,$dbpass,$dbname) or die("cannot connect"); 
+
+							         
+
+							          mysqli_select_db($db, $dbname) or die("cannot select DB");
+
+
+							           $query3 = 
+									        "SELECT * FROM studentcomments
+									        WHERE name = '".$name."'";
+									        $result2 = mysqli_query($db, $query2);
+
+							          $result = mysqli_query($db, $query3) or die(mysqli_error($db));
+
+							   
+							          while($row = mysqli_fetch_array($result)){ 
+
+							          ?>
+
+							          	</tbody>
+
+
 								<div class="panel panel-default">
 									<div class="panel-heading">
+									<div class="col-md-3" style="position:absolute; left:450px;">
+								    			<div class="form-group pull-right">
+								    				<input type="button" value="Delete" class="form-control btn btn-danger" onclick="deleteme(<?php echo $row['id']; ?>)">
+								    				<script language="javascript">
+														function deleteme(delid) 
+														{
+														        window.location.href='delete.php?del_id='+delid+'';
+														        return true;
+														}
+													</script>
+								    			</div>
+								    		</div>
 										<div class="row">
-											<strong id="userName2" style="position:relative; left:15px;">notMyUsername</strong>															
+											<strong id="userName2" style="position:relative; left:15px;"><?php echo $row ['email']; ?></strong>															
 										</div>
 										<div class="row" style="position:relative; left:15px;">
 											<div> Rating: 
-												<strong id="rating" style="color:red;">4</strong>
+												<strong id="rating" style="color:red;"><?php echo $row ['rating']; ?></strong>
 											</div>											
 										</div>
 									</div>
+
 									<div id="comment" class="panel-body">
-										this is an example comment to act as a template for pulling actual comments to db.
+										<?php echo $row ['comment']; ?>
 									</div><!-- /panel-body -->
+									
+
 								</div><!-- /panel panel-default -->
+
+							           </tbody>
+
+							          
+
+							       	<?php
+								        }
+								        ?>
+
+
+
+							    
+							          
+
+									
+
+
+									 
+
+
 							</div><!-- /col-sm-5 -->
 						</div><!-- /row -->
 
 						</div><!-- /container -->
+						</form>
 				    </div>
 				  </div>
+				  </form>
 				</div>
 			</div>
 		</main>
